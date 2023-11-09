@@ -1,11 +1,18 @@
 import { Operation } from "express-openapi";
 import { RequestHandler } from "express";
 
-export const GET: Operation = [getCats()];
+function getCatsHandler(): RequestHandler {
+  console.log("about to return hanlder");
+  return async (req, res) => {
+    console.log("am I hitting this endpojntioneroitnre");
+    res.status(200).json({ message: "CATSSSS" });
+  };
+};
+
+export const GET: Operation = getCatsHandler();
 
 GET.apiDoc = {
   summary: "Returns cat facts.",
-  // operationId: "getCats",
   // parameters: [
   //   {
   //     in: 'query',
@@ -30,10 +37,3 @@ GET.apiDoc = {
     },
   },
 };
-
-function getCats(): RequestHandler {
-  return async (req, res) => {
-    console.log("am I hitting this endpojntioneroitnre");
-    res.status(200).json({ message: "test" });
-  };
-}
