@@ -1,0 +1,36 @@
+// {
+//   "compilerOptions": {
+//     "esModuleInterop": true,
+//     "target": "es5",
+//     "module": "commonjs"
+//   },
+// }
+{
+  "compilerOptions": {
+    "module": "commonjs",
+    "lib": ["es2020.string", "dom", "es2015"],
+    "rootDir": ".",
+    "baseUrl": "src",
+    "outDir": "dist",
+    "downlevelIteration": true,
+    "target": "es5",
+    "sourceMap": true,
+    "allowJs": false,
+    "moduleResolution": "node",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitThis": true,
+    "noImplicitAny": false,
+    "suppressImplicitAnyIndexErrors": true,
+    "allowSyntheticDefaultImports": true,
+    "noUnusedLocals": false,
+    "esModuleInterop": true,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "skipLibCheck": true,
+    "resolveJsonModule": true,
+    "strict": false,
+    "typeRoots": ["node_modules/@types"]
+  },
+  "include": ["src"],
+  "exclude": ["**/node_modules", "**/dist"]
+}
