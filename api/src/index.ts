@@ -1,22 +1,27 @@
 import express from "express";
 import { initialize } from "express-openapi";
-// import v1WorldsService from './api/services/worldsService';
 import apiDoc from "../api-doc";
+import * as bodyParser from "body-parser";
 
 const port = 7080;
 
-const app = express();
+const app: express.Express = express();
+
+app.use(bodyParser.json());
+
+console.log("about to initialize");
 initialize({
+  validateApiDoc: false,
   app,
   apiDoc: apiDoc,
-  // dependencies: {
-  //   worldsService: v1WorldsService
-  // },
   paths: "./src/paths",
-  routesGlob: "./src/paths/*.{ts,js}", // updated default to allow .ts
+  routesGlob: "*****.{ts,js}", // updated default to allow .ts
   routesIndexFileRegExp: /(?:index)?\.[tj]s$/, // updated default to allow .ts
 });
 
+console.log("initialized");
 if (port) {
+  console.log("about to listen");
   app.listen(port);
+  console.log("listening");
 }
