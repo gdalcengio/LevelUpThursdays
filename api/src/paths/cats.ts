@@ -5,9 +5,9 @@ function getCatsHandler(): RequestHandler {
   console.log("about to return hanlder");
   return async (req, res) => {
     console.log("am I hitting this endpojntioneroitnre");
-    res.status(200).json({ message: "CATSSSS" });
+    res.status(200).json({ message: "doggoooSSSS" });
   };
-};
+}
 
 export const GET: Operation = getCatsHandler();
 
