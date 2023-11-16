@@ -1,0 +1,12 @@
+{
+  "clientID": 1,
+  "date": "2023-11-16",
+  "poopoo": [54.1, 100],
+  "moose": [
+    {
+    "lifestage": "Adult",
+    "health": "Good",
+    "gender": "Bull"
+    }
+  ]
+}
