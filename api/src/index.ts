@@ -2,8 +2,15 @@ import express from "express";
 import { initialize } from "express-openapi";
 import apiDoc from "../api-doc";
 import * as bodyParser from "body-parser";
+import { createDb, openDb } from "./Db/db";
 
 const port = 7080;
+
+const setupDb = async function () {
+  console.log("setting up db")
+  const connection = await openDb()
+  createDb(connection)
+}
 
 const app: express.Express = express();
 
@@ -21,7 +28,10 @@ initialize({
 
 console.log("initialized");
 if (port) {
-  console.log("about to listen");
-  app.listen(port);
-  console.log("listening");
+  setupDb().then(() => {
+    console.log("about to listen");
+    app.listen(port);
+    console.log("listening");
+  })
+  
 }
