@@ -1,9 +1,11 @@
 import { Operation } from "express-openapi";
 import { RequestHandler } from "express";
+import { openDb } from "../Db/db";
 
 function postMoose(): RequestHandler {
   return async (req, res) => {
     console.log(req.body);
+    const dbConnection = await openDb();
     res.status(200).json(req.body);
   };
 }
