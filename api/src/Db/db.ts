@@ -22,3 +22,14 @@ export async function createDb (dbConnection: Database) {
 
     dbConnection.run(createTableSql)
 }
+
+export async function insertMeese (dbConnection: Database, postbody: any) {
+  let insertSQL = 'INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES '
+  const sightingId = Math.floor(Math.random() * 10001);
+  postbody.moose.map(moose => {
+    insertSQL += `(${postbody.clientID}, ${sightingId}, ${JSON.stringify(postbody.date)}, ${postbody.location[0]}, ${postbody.location[1]}, ${JSON.stringify(moose?.lifestage || null)}, ${JSON.stringify(moose?.gender || null)}, ${JSON.stringify(moose?.health || null)}),`
+  })
+  insertSQL = insertSQL.substring(0, insertSQL.length-1);
+  console.log(insertSQL);
+  dbConnection.run(insertSQL);
+}

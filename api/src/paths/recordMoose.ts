@@ -1,11 +1,12 @@
 import { Operation } from "express-openapi";
 import { RequestHandler } from "express";
-import { openDb } from "../Db/db";
+import { openDb, insertMeese } from "../Db/db";
 
 function postMoose(): RequestHandler {
   return async (req, res) => {
     console.log(req.body);
     const dbConnection = await openDb();
+    insertMeese(dbConnection, req.body);
     res.status(200).json(req.body);
   };
 }
@@ -43,10 +44,10 @@ POST.apiDoc = {
                   lifestage: {
                     type: "string",
                   },
-                  health: {
+                  gender: {
                     type: "string",
                   },
-                  gender: {
+                  health: {
                     type: "string",
                   },
                 },
