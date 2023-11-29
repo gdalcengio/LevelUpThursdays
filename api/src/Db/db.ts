@@ -33,3 +33,9 @@ export async function insertMeese (dbConnection: Database, postbody: any) {
   console.log(insertSQL);
   dbConnection.run(insertSQL);
 }
+
+export async function findUserMeese (dbConnection: Database, user: any) {
+  let findUserSQL = 'SELECT * FROM Moose WHERE clientId = ?'
+  console.log(findUserSQL);
+  dbConnection.run(findUserSQL, user);
+}
