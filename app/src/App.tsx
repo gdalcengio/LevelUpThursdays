@@ -4,12 +4,12 @@ import viteLogo from "/vite.svg";
 import "./App.css";
 import React from "react";
 import { Provider, useDispatch, useSelector } from 'react-redux';
-import { ACTIVITY_LOCATION_SET } from "./state/actions";
+import { ACTIVITY_LOCATION_SET, USER_CLICK_RECORD_MOOSE } from "./state/actions";
 import { setupStore } from "./state/store";
 
 
 
-export const CountDisplay = (props: any) => {
+export const UserFeedbackDisplay = (props: any) => {
 
 
   const locationState = useSelector((state: any) => state.Activity.location);
@@ -17,17 +17,17 @@ export const CountDisplay = (props: any) => {
   const ref = useRef(0);
   ref.current += 1;
   console.log(
-    "%cCountDisplay render:" + ref.current.toString(),
+    "%UserFeedbackDisplay render:" + ref.current.toString(),
     "color: yellow"
   );
   console.log("props.count", props.count);
 
 
-  return <>{locationState}</>;
+  return <>{locationState? 'moose spotted': 'click to record moose'}</>;
 };
 
 
-export const CounterComponent = (props: any) => {
+export const RecordMoose = (props: any) => {
   const dispatch = useDispatch();
 
 
@@ -36,19 +36,18 @@ export const CounterComponent = (props: any) => {
   const ref = useRef(0);
   ref.current += 1;
   console.log(
-    "%cCounterComponent render:" + ref.current.toString(),
+    "%RecordMoose render:" + ref.current.toString(),
     "color: yellow"
   );
 
 
   const onClick = () => {
-    dispatch({ type: ACTIVITY_LOCATION_SET, payload: { location: "test" }});
+    dispatch({ type: USER_CLICK_RECORD_MOOSE});
   }
 
   return (
     <>
       <button onClick={onClick}></button>
-      {/*<CountDisplay count={count} /> */}
     </>
   );
 };
@@ -60,8 +59,8 @@ function App() {
 
   return (
       <>
-      <CounterComponent />
-      <CountDisplay/>
+      <RecordMoose />
+      <UserFeedbackDisplay/>
       </>
   );
 }
