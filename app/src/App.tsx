@@ -1,33 +1,37 @@
-import {  useRef, useState } from "react";
+import { useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
 import React from "react";
+import { Provider, useDispatch, useSelector } from 'react-redux';
+import { ACTIVITY_LOCATION_SET } from "./state/actions";
+import { setupStore } from "./state/store";
+
+
 
 export const CountDisplay = (props: any) => {
+
+
+  const locationState = useSelector((state: any) => state.Activity.location);
+
   const ref = useRef(0);
   ref.current += 1;
   console.log(
     "%cCountDisplay render:" + ref.current.toString(),
     "color: yellow"
   );
-  console.log('props.count', props.count)
+  console.log("props.count", props.count);
 
-  return <>{props.count}</>;
+
+  return <>{locationState}</>;
 };
 
-export const CounterComponentMemo = React.memo((props: any) => {
-  console.dir(props)
-  return <CounterComponent />
-}, (prevProps: any, nextProps: any) => {
-  console.dir(prevProps)
-  console.dir(nextProps)
-   return false })
 
 export const CounterComponent = (props: any) => {
+  const dispatch = useDispatch();
 
-  console.dir(props)
-  const onClick = () => setCount((count) => count + 1)
+
+
 
   const ref = useRef(0);
   ref.current += 1;
@@ -36,17 +40,14 @@ export const CounterComponent = (props: any) => {
     "color: yellow"
   );
 
-  const [count, setCount] = useState(0);
 
-  console.log('ref`', ref.current)
-  console.log('count`', count)
-
+  const onClick = () => {
+    dispatch({ type: ACTIVITY_LOCATION_SET, payload: { location: "test" }});
+  }
 
   return (
     <>
-      <button onClick={onClick}>
-        count is {count}
-      </button>
+      <button onClick={onClick}></button>
       {/*<CountDisplay count={count} /> */}
     </>
   );
@@ -55,31 +56,13 @@ export const CounterComponent = (props: any) => {
 function App() {
   const ref = useRef(0);
   ref.current += 1;
-  console.log(
-    "%cParent render:" + ref.current.toString(),
-    "color: yellow"
-  );
+  console.log("%cParent render:" + ref.current.toString(), "color: yellow");
+
   return (
-    <>
-      <CounterComponentMemo />
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <p>
-          Edit <code>src/App.tsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
+      <>
+      <CounterComponent />
+      <CountDisplay/>
+      </>
   );
 }
 
