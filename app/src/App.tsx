@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useRef, useState } from "react";
+import {  useRef, useState } from "react";
 import reactLogo from "./assets/react.svg";
 import viteLogo from "/vite.svg";
 import "./App.css";
@@ -16,20 +16,31 @@ export const CountDisplay = (props: any) => {
   return <>{props.count}</>;
 };
 
-export const CounterComponentMemo = React.memo((props) => {
+export const CounterComponentMemo = React.memo((props: any) => {
+  console.dir(props)
   return <CounterComponent />
-}, (prevProps, nextProps) => { return false })
+}, (prevProps: any, nextProps: any) => {
+  console.dir(prevProps)
+  console.dir(nextProps)
+   return false })
 
 export const CounterComponent = (props: any) => {
+
+  console.dir(props)
+  const onClick = () => setCount((count) => count + 1)
+
   const ref = useRef(0);
   ref.current += 1;
   console.log(
     "%cCounterComponent render:" + ref.current.toString(),
     "color: yellow"
   );
+
   const [count, setCount] = useState(0);
 
-  const onClick = () => setCount((count) => count + 1)
+  console.log('ref`', ref.current)
+  console.log('count`', count)
+
 
   return (
     <>
