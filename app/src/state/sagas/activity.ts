@@ -4,13 +4,12 @@ import { ACTIVITY_LOCATION_SET, USER_CLICK_RECORD_MOOSE } from '../actions';
 
 
 function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
-  // need to grab location here
-  yield put({type: ACTIVITY_LOCATION_SET, payload: {location: 'test'}});
+  yield put({type: ACTIVITY_LOCATION_SET, payload: location});
 }
 
 function* activityPageSaga() {
   yield all([
-    takeEvery(USER_CLICK_RECORD_MOOSE, handle_USER_CLICK_RECORD_MOOSE)
+    //takeEvery(USER_CLICK_RECORD_MOOSE, handle_USER_CLICK_RECORD_MOOSE)
   ]);
 }
 

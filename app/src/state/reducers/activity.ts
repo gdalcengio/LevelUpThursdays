@@ -9,7 +9,7 @@ class ActivityState {
   location: any;
 
   constructor() {
-    this.location = null;
+    this.location = "";
     this.recordingMooseInProgress = false;
   }
 }
@@ -21,7 +21,7 @@ function createActivityReducer(configuration: AppConfig): (arg0: ActivityState, 
       case USER_CLICK_RECORD_MOOSE: {
         return {
           ...state,
-          recordingMooseInProgress: true
+          recordingMooseInProgress: true,
         };
       }
       case ACTIVITY_LOCATION_SET: {
