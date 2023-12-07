@@ -7,5 +7,12 @@ export const FormPanel = (props: any) => {
   ref.current += 1;
   console.log("%FormPanel render:" + ref.current.toString(), "color: yellow");
 
-    return <div className="FormPanel"></div>
+    return <div className="FormPanel">
+
+
+            <div className="inputsContainer"></div>
+
+
+
+    </div>
 }
