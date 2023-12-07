@@ -51,7 +51,12 @@ function createActivityReducer(
         });
         if (mooseIndex === -1) return { ...state };
 
-        if (action.payload.age) meese[mooseIndex].age = action.payload?.age;
+        const updatedMoose = {
+          id: meese[mooseIndex].id,
+          age: action.payload.age ? action.payload.age : meese[mooseIndex].age,
+        };
+
+        meese[mooseIndex] = updatedMoose;
 
         return {
           ...state,
