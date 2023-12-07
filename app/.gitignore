@@ -8,6 +8,10 @@ pnpm-debug.log*
 lerna-debug.log*
 
 node_modules
+/api/node_modules/
+/api/.DS_Store
+.DS_Store
+/api/src/.DS_Store
 dist
 dist-ssr
 *.local
