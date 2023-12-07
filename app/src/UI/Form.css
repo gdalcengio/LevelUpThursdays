@@ -15,11 +15,10 @@
   background-color: yellow;
 }
 
-
 .headerBar {
-  background-color: brown;
+  background-color: rgb(145, 61, 61);
   height: 50px;
-  width: 100%;
+  padding: 0.5em;
 }
 
 .meese {
@@ -29,5 +28,14 @@
 }
 
 .addMooseButton {
-
+  background-color: #FCBA19;
+  border: none;
+  color: #003366;
+  padding: 15px 32px;
+  text-align: center;
+  font-size: 16px;
+  border: solid transparent;
+  border-radius: 16px;
+  border-width: 0 0 4px;
+  border-color: #313132;
 }
