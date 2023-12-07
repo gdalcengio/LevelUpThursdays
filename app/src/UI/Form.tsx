@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { USER_CLICK_ADD_MOOSE } from "../state/actions";
+import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 
 export const FormPanel = (props: any) => {
@@ -28,6 +28,14 @@ export const FormPanel = (props: any) => {
             }}
           >
             Add Moose
+          </button>
+          <button
+            className="recordLocationButton"
+            onClick={() => {
+              dispatch({ type: GET_GEOLOCATION});
+            }}
+          >
+            Mark Location
           </button>
         </div>
         <div className="meese">

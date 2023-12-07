@@ -46,7 +46,7 @@ function createActivityReducer(
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
-          location: action.payload.location,
+          location: { ...action.payload } ,
         };
       }
       case ACTIVITY_UPDATE_MOOSE: {
