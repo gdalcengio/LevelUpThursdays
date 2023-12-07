@@ -1,8 +1,11 @@
 import {
-  ACTIVITY_LOCATION_SET, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_MOOSE
-} from '../actions';
+  ACTIVITY_LOCATION_SET,
+  USER_CLICK_ADD_MOOSE,
+  USER_CLICK_RECORD_MOOSE,
+} from "../actions";
+import { ACTIVITY_UPDATE_MOOSE_AGE } from "../actions/index";
 
-import { AppConfig } from '../config';
+import { AppConfig } from "../config";
 
 class ActivityState {
   recordingMooseInProgress: boolean;
@@ -17,15 +20,16 @@ class ActivityState {
 }
 const initialState = new ActivityState();
 
-function createActivityReducer(configuration: AppConfig): (arg0: ActivityState, AnyAction: any) => ActivityState {
+function createActivityReducer(
+  configuration: AppConfig
+): (arg0: ActivityState, AnyAction: any) => ActivityState {
   return (state = initialState, action) => {
     switch (action.type) {
       case USER_CLICK_ADD_MOOSE: {
         return {
           ...state,
-          mooseArray: [...state.mooseArray, { id: Math.random()}]
-        }
-
+          mooseArray: [...state.mooseArray, { id: Math.random() }],
+        };
       }
       case USER_CLICK_RECORD_MOOSE: {
         return {
@@ -36,7 +40,22 @@ function createActivityReducer(configuration: AppConfig): (arg0: ActivityState, 
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
-          location: action.payload.location
+          location: action.payload.location,
+        };
+      }
+      case ACTIVITY_UPDATE_MOOSE_AGE: {
+        const id = action.payload?.id;
+        const meese = state.mooseArray;
+        const mooseIndex = meese.findIndex((moose) => {
+          return moose.id === id;
+        });
+        if (mooseIndex === -1) return { ...state };
+
+        meese[mooseIndex].age = action.payload?.age;
+
+        return {
+          ...state,
+          mooseArray: meese,
         };
       }
       default:
@@ -45,6 +64,7 @@ function createActivityReducer(configuration: AppConfig): (arg0: ActivityState, 
   };
 }
 
-const selectActivity: (state: any) => ActivityState = (state) => state.ActivityPage;
+const selectActivity: (state: any) => ActivityState = (state) =>
+  state.ActivityPage;
 
 export { createActivityReducer, selectActivity };
