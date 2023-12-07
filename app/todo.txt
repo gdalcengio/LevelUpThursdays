@@ -6,10 +6,10 @@
 - [ ] user input / feedback panel work:
     - [x] let user add another moose to the sighting
         - [x] a button to do this
-        - [ ] style button
-            - [ ] button should be bc gov yellow
-            - [ ] button should be on the right side of the header
-            - [ ] text bc gov blue-ish
+        - [x] style button
+            - [x] button should be bc gov yellow
+            - [x] button should be on the right side of the header
+            - [x] text bc gov blue-ish
         - [x] a place in state to keep working moose sighting data
         - [x] needs to handle a list in state
         - [x] reducer case for add moose action
