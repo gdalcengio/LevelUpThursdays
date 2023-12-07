@@ -1,8 +1,19 @@
-- [ ] prompt the user for number of moose when user clicks record moose
-- [ ] dispatch an action NOTE_NUMBER_OF_MOOSE with number of moose in payload
-
-- [ ] prompt the user for location when user clicks record moose
-- [ ] dispatch an action ACTIVITY_LOCATION_SET once they choose something
+- [ ] main UI elements:
+    - [ ] a panel for user inputs and displaying feedback
+    - [ ] a panel for displaying a map
 
 
-- [ ] when there is a location and there is a number of moose and user confirms - submit the record
+- [ ] user input / feedback panel work:
+    - [ ] prompt the user for number of moose when user clicks record moose
+    - [ ] dispatch an action NOTE_NUMBER_OF_MOOSE with number of moose in payload
+
+    - [ ] prompt the user for location when user clicks record moose
+    - [ ] dispatch an action ACTIVITY_LOCATION_SET once they choose something
+
+    - [ ] when there is a location and there is a number of moose and user confirms - submit the record
+
+- [ ] map element work:
+    - [ ] display results on a map
+
+
+- [ ] maybe look at using react router

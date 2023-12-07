@@ -1,62 +1,9 @@
-import { useRef, useState } from "react";
-import reactLogo from "./assets/react.svg";
-import viteLogo from "/vite.svg";
+import { useRef } from "react";
 import "./App.css";
-import React from "react";
-import { Provider, useDispatch, useSelector } from 'react-redux';
-import { ACTIVITY_LOCATION_SET, USER_CLICK_RECORD_MOOSE } from "./state/actions";
-import { setupStore } from "./state/store";
+import { FormPanel } from "./UI/Form";
+import { MapPanel } from "./UI/Map";
+import './index.css'
 
-
-
-export const UserFeedbackDisplay = (props: any) => {
-
-
-  const locationState = useSelector((state: any) => state.Activity.location);
-
-  const ref = useRef(0);
-  ref.current += 1;
-  console.log(
-    "%UserFeedbackDisplay render:" + ref.current.toString(),
-    "color: yellow"
-  );
-  console.log("props.count", props.count);
-
-
-  return <>{locationState? 'moose spotted': 'click to record moose'}</>;
-};
-
-
-export const RecordMoose = (props: any) => {
-  const dispatch = useDispatch();
-  const recordingMooseInProgress = useSelector((state: any) => state.Activity.recordingMooseInProgress)
-  const location = useSelector((state: any) => state.Activity.location)
-
-  const ref = useRef(0);
-  ref.current += 1;
-  console.log(
-    "%RecordMoose render:" + ref.current.toString(),
-    "color: yellow"
-  );
-
-
-  const onClick = () => {
-    dispatch({ type: USER_CLICK_RECORD_MOOSE});
-  }
-
-  const locationOnClick = (e: any) => {
-    const location = e.target.value
-    dispatch({ type: ACTIVITY_LOCATION_SET, payload: {location: location} });
-  }
-
-
-  return (
-    <>
-      { recordingMooseInProgress ? <><input id="locationInput" value={location} onChange={locationOnClick}></input><button onClick={locationOnClick}>Record Moose Location</button></>: <></> }
-      {recordingMooseInProgress ? <></> : <button onClick={onClick}>Record Moose</button>}
-    </>
-  );
-};
 
 function App() {
   const ref = useRef(0);
@@ -64,10 +11,10 @@ function App() {
   console.log("%cParent render:" + ref.current.toString(), "color: yellow");
 
   return (
-      <>
-      <RecordMoose />
-      <UserFeedbackDisplay/>
-      </>
+      <div className="rootContainer">
+        <MapPanel/>
+        <FormPanel/>
+      </div>
   );
 }
 
