@@ -5,10 +5,22 @@
   background-color: green;
 }
 
-
 .inputsContainer {
   height: 75%;
   width: 80%;
   justify-content: center;
   background-color: yellow;
+}
+
+
+.headerBar {
+  background-color: brown;
+  height: 50px;
+  width: 100%;
+}
+
+.meese {
+  background-color: purple;
+  height: 100%;
+  width: 100%;
 }

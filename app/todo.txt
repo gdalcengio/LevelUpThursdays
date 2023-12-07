@@ -1,16 +1,13 @@
-- [ ] main UI elements:
-    - [ ] a panel for user inputs and displaying feedback
-    - [ ] a panel for displaying a map
+- [x] main UI elements:
+    - [x] a panel for user inputs and displaying feedback
+    - [x] a panel for displaying a map
 
 
 - [ ] user input / feedback panel work:
-    - [ ] prompt the user for number of moose when user clicks record moose
-    - [ ] dispatch an action NOTE_NUMBER_OF_MOOSE with number of moose in payload
-
-    - [ ] prompt the user for location when user clicks record moose
-    - [ ] dispatch an action ACTIVITY_LOCATION_SET once they choose something
-
-    - [ ] when there is a location and there is a number of moose and user confirms - submit the record
+    - [ ] let user add another moose to the sighting
+    - [ ] let user select estimated age of each moose
+    - [ ] prompt for loctation
+    - [ ] confirm/submit - dispatch action
 
 - [ ] map element work:
     - [ ] display results on a map
