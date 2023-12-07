@@ -19,14 +19,35 @@
         - [x] dispatch update moose payload { id, age, other stuff}
         - [x] update moose reducer case, where we only update the moose whos id we had in the payload
 
+    # Luna
+    - [ ] style mark location button
+    - [ ] add gender to things we record for each moose
+
+
     - [x] prompt for loctation
         - [ ] let user enter or 
         - [x] grab from geolocation
 
+
+
+    # Gabe
     - [ ] confirm/submit - dispatch action
         - [ ] modal / ui prompt and dispatch on confirm
+        - [ ] data in state for current siting is 'packaged' up into a 'sighting' object
+        - [ ] sighting objects are in a list in state
 
+        - [ ] on update write to localstorage
+        - [ ] on load read from state
+
+
+    - [ ] geojson component for past sightings & a toggle
+
+# Julian
 - [ ] map element work:
+    - [ ] a child element to the map called CurrentMooseLocation
+    - [ ] will return a <Marker/> (from react-leaflet)
+    - [ ] uses location state 
+
     - [ ] display results on a map
 
 
