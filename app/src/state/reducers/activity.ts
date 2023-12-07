@@ -3,7 +3,7 @@ import {
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
 } from "../actions";
-import { ACTIVITY_UPDATE_MOOSE_AGE } from "../actions/index";
+import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
 import { AppConfig } from "../config";
 
@@ -43,7 +43,7 @@ function createActivityReducer(
           location: action.payload.location,
         };
       }
-      case ACTIVITY_UPDATE_MOOSE_AGE: {
+      case ACTIVITY_UPDATE_MOOSE: {
         const id = action.payload?.id;
         const meese = state.mooseArray;
         const mooseIndex = meese.findIndex((moose) => {
@@ -51,7 +51,7 @@ function createActivityReducer(
         });
         if (mooseIndex === -1) return { ...state };
 
-        meese[mooseIndex].age = action.payload?.age;
+        if (action.payload.age) meese[mooseIndex].age = action.payload?.age;
 
         return {
           ...state,
