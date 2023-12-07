@@ -28,14 +28,14 @@
 }
 
 .addMooseButton {
-  background-color: #FCBA19;
-  border: none;
-  color: #003366;
-  padding: 15px 32px;
-  text-align: center;
-  font-size: 16px;
-  border: solid transparent;
-  border-radius: 16px;
-  border-width: 0 0 4px;
-  border-color: #313132;
+
+}
+
+.moose{
+  margin: 1px;
+  border: #223f75 1px solid;
+}
+
+#ageSelector {
+  margin-left: 5px
 }
