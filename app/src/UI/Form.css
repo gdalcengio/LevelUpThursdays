@@ -31,3 +31,12 @@
 .addMooseButton {
 
 }
+
+.moose{
+  margin: 1px;
+  border: #223f75 1px solid;
+}
+
+#ageSelector {
+  margin-left: 5px
+}
