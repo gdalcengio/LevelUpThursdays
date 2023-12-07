@@ -15,11 +15,10 @@
   background-color: yellow;
 }
 
-
 .headerBar {
-  background-color: brown;
+  background-color: rgb(145, 61, 61);
   height: 50px;
-  width: 100%;
+  padding: 0.5em;
 }
 
 .meese {
