@@ -4,10 +4,24 @@
 
 
 - [ ] user input / feedback panel work:
-    - [ ] let user add another moose to the sighting
+    - [x] let user add another moose to the sighting
+        - [x] a button to do this
+        - [ ] style button
+            - [ ] button should be bc gov yellow
+            - [ ] button should be on the right side of the header
+            - [ ] text bc gov blue-ish
+        - [x] a place in state to keep working moose sighting data
+        - [x] needs to handle a list in state
+        - [x] reducer case for add moose action
+
     - [ ] let user select estimated age of each moose
+        - [ ] age selector UI element
+        - [ ] dispatch update moose payload { id, age, other stuff}
+        - [ ] update moose reducer case, where we only update the moose whos id we had in the payload
     - [ ] prompt for loctation
+        - [ ] let user enter or grab from geolocation
     - [ ] confirm/submit - dispatch action
+        - [ ] modal / ui prompt and dispatch on confirm
 
 - [ ] map element work:
     - [ ] display results on a map
