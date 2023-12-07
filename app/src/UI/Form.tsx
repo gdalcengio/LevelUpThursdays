@@ -2,6 +2,7 @@ import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { USER_CLICK_ADD_MOOSE } from "../state/actions";
+import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
@@ -38,8 +39,8 @@ export const FormPanel = (props: any) => {
                   <select
                   id="ageSelector"
                   value={moose.age}
-                  onChange={() => {
-                    handleChange(moose.id, moose.age)
+                  onChange={(event) => {
+                    handleChange(moose.id, event.target.value.toString())
                   }}
                 >
                   {Array.from({ length: 25 }, (_, index) => (

@@ -28,7 +28,13 @@ function createActivityReducer(
       case USER_CLICK_ADD_MOOSE: {
         return {
           ...state,
-          mooseArray: [...state.mooseArray, { id: Math.random() }],
+          mooseArray: [
+            ...state.mooseArray,
+            {
+              id: Math.floor(Math.random() * (1000000 - 1 + 1)) + 1, //Julian's fancy random whole number
+              age: null,
+            },
+          ],
         };
       }
       case USER_CLICK_RECORD_MOOSE: {
