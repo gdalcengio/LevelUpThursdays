@@ -28,7 +28,7 @@ export const MapPanel: React.FC = () => {
     shadowSize: [41, 41]
   })
 
-  const markerState = useSelector((state: any) => state.Activity.location) as LocationState;
+  const markerState = useSelector((state: any) => state.MooseSightingsState.location) as LocationState;
   const defaultLocation: [number, number] = [48.4284, -123.3656];
 
   const markerPosition: [number, number] = [

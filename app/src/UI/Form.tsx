@@ -11,8 +11,11 @@ export const FormPanel = (props: any) => {
   
   const dispatch = useDispatch();
 
-  const handleChange = (mooseId: number, mooseAge: number, mooseGender: string) => {
-    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge, gender: mooseGender } });
+  const handleAgeChange = (mooseId: number, mooseAge: number) => {
+    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge} });
+  };
+  const handleGenderChange = (mooseId: number, mooseGender: string) => {
+    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, gender: mooseGender } });
   };
 
   const mooseArray = useSelector((state: any) => state.MooseSightingsState.mooseArray);
@@ -48,7 +51,7 @@ export const FormPanel = (props: any) => {
                   id="ageSelector"
                   value={moose.age}
                   onChange={(event) => {
-                    handleChange(moose.id, event.target.value.toString())
+                    handleAgeChange(moose.id, Number(event.target.value.toString()))
                   }}
                 >
                   {Array.from({ length: 25 }, (_, index) => (
@@ -61,7 +64,7 @@ export const FormPanel = (props: any) => {
                   id="genderSelector"
                   value={moose.gender}
                   onChange={(event) => {
-                    handleChange(moose.id, event.target.value.toString())
+                    handleGenderChange(moose.id, event.target.value.toString())
                   }}
                 >
                   <option value='male'>Male</option>
