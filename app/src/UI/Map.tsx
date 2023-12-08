@@ -1,5 +1,5 @@
 import "./Map.css"
-import { MapContainer, Marker, TileLayer, useMap} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap, Popup} from 'react-leaflet'
 import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 
@@ -44,7 +44,11 @@ export const MapPanel: React.FC = () => {
           />
           {markerState.latitude != null && markerState.longitude != null && (
               <>
-                  <Marker position={markerPosition} icon={mooseIcon} />
+                  <Marker position={markerPosition} icon={mooseIcon}>
+                    <Popup>
+                          Latitude: {markerPosition[0]}, Longitude: {markerPosition[1]}
+                      </Popup>
+                  </Marker>
                   <ChangeView center={markerPosition} />
               </>
           )}
