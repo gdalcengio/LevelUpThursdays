@@ -7,7 +7,7 @@ import {
 } from "redux-saga/effects";
 import {
   ACTIVITY_LOCATION_SET,
-  GET_GEOLOCATION
+  GET_GEOLOCATION,
 } from "../actions";
 
 function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
@@ -49,6 +49,7 @@ function* getGeoLocation() {
     return;
   }
 }
+
 
 
 function* activityPageSaga() {

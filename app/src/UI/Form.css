@@ -14,7 +14,7 @@
 }
 
 .headerBar {
-  background-color: rgb(145, 61, 61);
+  background-color: #003366;
   height: 50px;
   padding: 0.5em;
   text-align: right;
@@ -33,9 +33,24 @@
   height: 100%;
   padding:0.3em 1.2em;
   border-radius:2em;
+  margin: 5px
 }
 
 .addMooseButton:hover {
+  background-color:#f4cb64;
+}
+
+.recordLocationButton {
+  background-color:#FCBA19;
+  border-color: initial;
+  color: #003366;
+  height: 100%;
+  padding:0.3em 1.2em;
+  border-radius:2em;
+  margin: 5px
+}
+
+.recordLocationButton:hover {
   background-color:#f4cb64;
 }
 

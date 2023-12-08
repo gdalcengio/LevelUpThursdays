@@ -20,8 +20,8 @@
         - [x] update moose reducer case, where we only update the moose whos id we had in the payload
 
     # Luna
-    - [ ] style mark location button
-    - [ ] add gender to things we record for each moose
+    - [x] style mark location button
+    - [x] add gender to things we record for each moose
 
 
     - [x] prompt for loctation

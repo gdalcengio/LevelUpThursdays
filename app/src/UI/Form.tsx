@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE } from "../state/actions";
+import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 
 export const FormPanel = (props: any) => {
@@ -11,8 +11,8 @@ export const FormPanel = (props: any) => {
   
   const dispatch = useDispatch();
 
-  const handleChange = (mooseId: number, mooseAge: number) => {
-    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge } });
+  const handleChange = (mooseId: number, mooseAge: number, mooseGender: string) => {
+    dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge, gender: mooseGender } });
   };
 
   const mooseArray = useSelector((state: any) => state.Activity.mooseArray);
@@ -56,6 +56,17 @@ export const FormPanel = (props: any) => {
                       {index + 1}
                     </option>
                   ))}
+                </select>
+                <select
+                  id="genderSelector"
+                  value={moose.gender}
+                  onChange={(event) => {
+                    handleChange(moose.id, event.target.value.toString())
+                  }}
+                >
+                  <option value='male'>Male</option>
+                  <option value='female'>Female</option>
+                  <option value='unknown'>Unknown</option>
                 </select>
                 </div>
               </>

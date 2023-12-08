@@ -33,6 +33,7 @@ function createActivityReducer(
             {
               id: Math.floor(Math.random() * (1000000 - 1 + 1)) + 1, //Julian's fancy random whole number
               age: null,
+              gender: null,
             },
           ],
         };
