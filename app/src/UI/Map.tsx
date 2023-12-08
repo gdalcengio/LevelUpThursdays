@@ -1,19 +1,53 @@
-import { useRef } from "react";
 import "./Map.css"
-import { MapContainer, TileLayer, useMap } from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap} from 'react-leaflet'
+import { LatLngExpression, Icon } from 'leaflet'
+import { useSelector } from "react-redux";
 
+interface ChangeViewProps {
+    center: LatLngExpression;
+}
 
-export const MapPanel = (props: any) => {
-  const ref = useRef(0);
-  ref.current += 1;
-  console.log("%MapPanel render:" + ref.current.toString(), "color: yellow");
+const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
+    const map = useMap();
+    map.setView(center);
+    return null;
+};
+
+interface LocationState {
+  latitude: number | null;
+  longitude: number | null;
+}
+
+export const MapPanel: React.FC = () => {
+
+  const mooseIcon = new Icon({
+    iconUrl: 'moose.png',
+    iconSize: [30, 41],
+    iconAnchor: [12, 41],
+    popupAnchor: [1, -34],
+    shadowSize: [41, 41]
+  })
+
+  const markerState = useSelector((state: any) => state.Activity.location) as LocationState;
+  const defaultLocation: [number, number] = [48.4284, -123.3656];
+
+  const markerPosition: [number, number] = [
+      markerState.latitude ?? defaultLocation[0],
+      markerState.longitude ?? defaultLocation[1]
+  ];
 
   return <div className="MapPanel">
-      <MapContainer className="MapContainer" center={[51.505, -0.09]} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
+      <MapContainer className="MapContainer" center={defaultLocation} zoom={13} scrollWheelZoom={false}>
+          <TileLayer
+              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+          />
+          {markerState.latitude != null && markerState.longitude != null && (
+              <>
+                  <Marker position={markerPosition} icon={mooseIcon} />
+                  <ChangeView center={markerPosition} />
+              </>
+          )}
       </MapContainer>
   </div>
-}
+};
