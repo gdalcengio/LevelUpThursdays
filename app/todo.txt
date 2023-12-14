@@ -1,5 +1,6 @@
 0.20:
 
+  - [x] added capacitor to the repo
   - [ ] remove blanabba - l
   - [ ] replace age with enum of 'adult' 'calf' - g
   - [ ] add a moose tracker / bcgov header + footer - j
@@ -7,13 +8,13 @@
     - [ ] add attribution for the existing icons
     - [ ] edit or find the other two
   - [ ] add multiple icons when there are multiple moose - j
-  - [ ] wire up a side effect to call the api from the app
   - [ ] pages in app with react router: - m + g
     - [ ] about page
     - [x] record sighting
     - [ ] view & sync past sightings
+        - [ ] wire up a side effect to call the api from the app
        - [ ] api make the endpoint update the db if it doesnt already
-    - [ ] page to view the regs (pdf) - g
+    - [x] page to view the regs (pdf) - g
 
 0.1.0: 
 - [x] main UI elements:
