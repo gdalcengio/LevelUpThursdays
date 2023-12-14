@@ -5,6 +5,7 @@ import { MapPanel } from "./UI/Map";
 import './index.css'
 import { Header } from "./UI/Header";
 import { Footer } from "./UI/Footer";
+import { Regs } from "./UI/Regs";
 
 
 function App() {
@@ -18,6 +19,7 @@ function App() {
         <MapPanel/>
         <FormPanel/>
         <Footer/>
+        <Regs/>
       </div>
   );
 }
