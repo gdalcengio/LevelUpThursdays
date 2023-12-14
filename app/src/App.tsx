@@ -3,6 +3,8 @@ import "./App.css";
 import { FormPanel } from "./UI/Form";
 import { MapPanel } from "./UI/Map";
 import './index.css'
+import { Header } from "./UI/Header";
+import { Footer } from "./UI/Footer";
 
 
 function App() {
@@ -12,8 +14,10 @@ function App() {
 
   return (
       <div className="rootContainer">
+        <Header/>
         <MapPanel/>
         <FormPanel/>
+        <Footer/>
       </div>
   );
 }

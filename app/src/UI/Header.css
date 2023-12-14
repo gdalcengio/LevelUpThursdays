@@ -1,0 +1,36 @@
+.headerWrapper{
+    background-color: #003366;
+    display: flex;
+    flex-grow: 1;
+    height: 75px;
+    margin: 0;
+    flex-direction: row;
+}
+
+.iconContainer{
+    display: flex;
+    flex-basis: 1;
+    margin-left: 100px;
+    align-items: center;
+    justify-content: center;
+}
+
+.bcgovIcon{
+    height:50px;
+    width:100%;
+}
+
+.titleContainer{
+    display: flex;
+    flex-basis: 6;
+    align-items: center;
+    justify-content: start;
+    flex-grow: 1;
+}
+
+.headerText{
+    font-size: xx-large;
+    font-weight: bold;
+    color: white;
+    margin-left: 20px;
+}
