@@ -1,7 +1,7 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
+import { ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 
 export const FormPanel = (props: any) => {
@@ -71,6 +71,11 @@ export const FormPanel = (props: any) => {
                   <option value='female'>Female</option>
                   <option value='unknown'>Unknown</option>
                 </select>
+                <button onClick={() => {
+                  dispatch({type: ACTIVITY_DELETE_MOOSE, payload: { id: moose.id } })
+                }}>
+                  Delete
+                  </button>
                 </div>
               </>
             );
