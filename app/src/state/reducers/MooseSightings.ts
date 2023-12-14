@@ -1,3 +1,4 @@
+import { Age } from "../../UI/Enums";
 import {
   ACTIVITY_DELETE_MOOSE,
   ACTIVITY_LOCATION_SET,
@@ -33,7 +34,7 @@ function createMooseSightingStateReducer(
             ...state.mooseArray,
             {
               id: state.mooseArray.length + 1,
-              age: null,
+              age: Age.adult,
               gender: null,
             },
           ],
@@ -60,7 +61,7 @@ function createMooseSightingStateReducer(
         const updatedMoose = {
           ...meese[mooseIndex],
           age: action.payload.age ?? meese[mooseIndex].age,
-          gender: action.payload.gender ?? meese[mooseIndex].gender
+          gender: action.payload.gender ?? meese[mooseIndex].gender,
         };
 
         meese[mooseIndex] = updatedMoose;

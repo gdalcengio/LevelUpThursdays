@@ -3,6 +3,7 @@ import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
 import { ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
+import { Age } from "./Enums";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
@@ -11,7 +12,7 @@ export const FormPanel = (props: any) => {
   
   const dispatch = useDispatch();
 
-  const handleAgeChange = (mooseId: number, mooseAge: number) => {
+  const handleAgeChange = (mooseId: number, mooseAge: string) => {
     dispatch({ type: ACTIVITY_UPDATE_MOOSE, payload: { id: mooseId, age: mooseAge} });
   };
   const handleGenderChange = (mooseId: number, mooseGender: string) => {
@@ -51,14 +52,19 @@ export const FormPanel = (props: any) => {
                   id="ageSelector"
                   value={moose.age}
                   onChange={(event) => {
-                    handleAgeChange(moose.id, Number(event.target.value.toString()))
+                    console.log(moose.id);
+                    handleAgeChange(moose.id, event.target.value)
                   }}
                 >
-                  {Array.from({ length: 25 }, (_, index) => (
-                    <option key={index + 1} value={index + 1}>
-                      {index + 1}
-                    </option>
-                  ))}
+                  {
+                    Object.values(Age).map((age, i) => {
+                      return (
+                        <option key={i + 1} value={age}>
+                          {age}
+                        </option>
+                      );
+                    })
+                  }
                 </select>
                 <select
                   id="genderSelector"

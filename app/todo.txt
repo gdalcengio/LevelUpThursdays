@@ -1,12 +1,12 @@
 0.20:
 
   - [x] remove blanabba - l
-  - [ ] replace age with enum of 'adult' 'calf' - g
-  - [ ] add a moose tracker / bcgov header + footer - j
-  - [ ] find or edit the icon so we have a female + calf icon - j
+  - [x] replace age with enum of 'adult' 'calf' - g
+  - [x] add a moose tracker / bcgov header + footer - j
+  - [x] find or edit the icon so we have a female + calf icon - j
     - [ ] add attribution for the existing icons
     - [x] edit or find the other two - l
-  - [ ] add multiple icons when there are multiple moose - j
+  - [x] add multiple icons when there are multiple moose - j
   - [ ] pages in app with react router: - m + g
     - [ ] about page
     - [x] record sighting
@@ -42,7 +42,7 @@
     - [x] add gender to things we record for each moose
 
 
-    - [x] prompt for loctation
+    - [x] prompt for lactation
         - [ ] let user enter or 
         - [x] grab from geolocation
 
