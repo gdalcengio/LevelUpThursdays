@@ -70,7 +70,7 @@ export const MapPanel: React.FC = () => {
     };
 
     const getMooseIcon = (moose: any) => {
-        if (moose.age == 1 && moose.age !== null) {
+        if (moose.age === 'Calf' && moose.age !== null) {
             return mooseIconCalf;
         }
         if (moose.gender === 'male') {
