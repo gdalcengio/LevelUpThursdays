@@ -47,20 +47,19 @@ function createMooseSightingStateReducer(
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
-          location: { ...action.payload } ,
+          location: { ...action.payload },
         };
       }
       case ACTIVITY_UPDATE_MOOSE: {
         const id = action.payload?.id;
-        const meese = state.mooseArray;
-        const mooseIndex = meese.findIndex((moose) => {
-          return moose.id === id;
-        });
+        const meese = [...state.mooseArray];
+        const mooseIndex = meese.findIndex((moose) => moose.id === id);
         if (mooseIndex === -1) return { ...state };
 
         const updatedMoose = {
-          id: meese[mooseIndex].id,
-          age: action.payload.age ? action.payload.age : meese[mooseIndex].age,
+          ...meese[mooseIndex],
+          age: action.payload.age ?? meese[mooseIndex].age,
+          gender: action.payload.gender ?? meese[mooseIndex].gender
         };
 
         meese[mooseIndex] = updatedMoose;
