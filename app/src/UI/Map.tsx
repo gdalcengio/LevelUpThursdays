@@ -1,5 +1,5 @@
 import "./Map.css"
-import { MapContainer, Marker, TileLayer, useMap} from 'react-leaflet'
+import { MapContainer, Marker, TileLayer, useMap } from 'react-leaflet'
 import { LatLngExpression, Icon } from 'leaflet'
 import { useSelector } from "react-redux";
 
@@ -14,8 +14,8 @@ const ChangeView: React.FC<ChangeViewProps> = ({ center }) => {
 };
 
 interface LocationState {
-  latitude: number | null;
-  longitude: number | null;
+    latitude: number | null;
+    longitude: number | null;
 }
 
 export const MapPanel: React.FC = () => {
@@ -55,7 +55,7 @@ export const MapPanel: React.FC = () => {
 
     const getOffsetLocation = (index: number, baseLocation: [number, number]): [number, number] => {
         const offsetDistance = 0.002;
-        switch(index) {
+        switch (index) {
             case 1: // Behind (Bottom)
                 return [baseLocation[0] - 0.0015, baseLocation[1] + 0.0041];
             case 2: // Behind (Top)
@@ -70,34 +70,34 @@ export const MapPanel: React.FC = () => {
     };
 
     const getMooseIcon = (moose: any) => {
-        if(moose.age == 1 && moose.age !== null){
+        if (moose.age == 1 && moose.age !== null) {
             return mooseIconCalf;
         }
-        if(moose.gender === 'Male'){
+        if (moose.gender === 'Male') {
             return mooseIconMale;
         }
-        if(moose.gender === 'Female'){
+        if (moose.gender === 'Female') {
             return mooseIconFemale;
         }
-        else{
+        else {
             return mooseIconMale;
         }
     }
 
-return (
-    <div className="MapPanel">
-      <MapContainer className="MapContainer" center={defaultLocation} zoom={13} scrollWheelZoom={false}>
-        <TileLayer
-            attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-            url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        {mooseArray.map((moose: any, index: number) => {
-          const position = getOffsetLocation(index, markerPosition);
-          const mooseIcon = getMooseIcon(moose);
-          return <Marker key={index} position={position} icon={mooseIcon} />;
-        })}
-        <ChangeView center={markerPosition} />
-      </MapContainer>
-    </div>
-  );
+    return (
+        <div className="MapPanel">
+            <MapContainer className="MapContainer" center={defaultLocation} zoom={13} scrollWheelZoom={false}>
+                <TileLayer
+                    attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
+                    url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
+                />
+                {mooseArray.map((moose: any, index: number) => {
+                    const position = getOffsetLocation(index, markerPosition);
+                    const mooseIcon = getMooseIcon(moose);
+                    return <Marker key={index} position={position} icon={mooseIcon} />;
+                })}
+                <ChangeView center={markerPosition} />
+            </MapContainer>
+        </div>
+    );
 };
