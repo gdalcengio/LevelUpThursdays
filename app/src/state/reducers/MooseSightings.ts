@@ -1,4 +1,5 @@
 import {
+  ACTIVITY_DELETE_MOOSE,
   ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
@@ -68,6 +69,24 @@ function createMooseSightingStateReducer(
           ...state,
           mooseArray: meese,
         };
+      }
+      case ACTIVITY_DELETE_MOOSE: {
+        const id = action.payload?.id;
+        let meese = [...state.mooseArray];
+
+        meese.splice(id - 1, 1);
+        
+        meese = meese.map((moose, index) => {
+          return {
+            ...moose,
+            id: index + 1
+          };
+        });
+
+        return {
+          ...state,
+          mooseArray: meese
+        }
       }
       default:
         return state;
