@@ -73,10 +73,10 @@ export const MapPanel: React.FC = () => {
         if (moose.age == 1 && moose.age !== null) {
             return mooseIconCalf;
         }
-        if (moose.gender === 'Male') {
+        if (moose.gender === 'male') {
             return mooseIconMale;
         }
-        if (moose.gender === 'Female') {
+        if (moose.gender === 'female') {
             return mooseIconFemale;
         }
         else {
