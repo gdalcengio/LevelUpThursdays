@@ -8,7 +8,7 @@
     - [x] edit or find the other two - l
   - [x] add multiple icons when there are multiple moose - j
   - [ ] pages in app with react router: - m + g
-    - [ ] about page
+    - [x] about page
     - [x] record sighting
     - [ ] view & sync past sightings
         - [ ] wire up a side effect to call the api from the app
