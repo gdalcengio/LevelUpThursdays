@@ -31,7 +31,7 @@ function createMooseSightingStateReducer(
           mooseArray: [
             ...state.mooseArray,
             {
-              id: Math.floor(Math.random() * (1000000 - 1 + 1)) + 1, //Julian's fancy random whole number
+              id: state.mooseArray.length + 1,
               age: null,
               gender: null,
             },

@@ -46,7 +46,7 @@ export const FormPanel = (props: any) => {
             return (
               <>
                 <div className="moose" key={moose.id}>
-                  blanabba
+                  {moose.id}
                   <select
                   id="ageSelector"
                   value={moose.age}

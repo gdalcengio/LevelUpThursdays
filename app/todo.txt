@@ -1,12 +1,11 @@
 0.20:
 
-  - [x] added capacitor to the repo
-  - [ ] remove blanabba - l
+  - [x] remove blanabba - l
   - [ ] replace age with enum of 'adult' 'calf' - g
   - [ ] add a moose tracker / bcgov header + footer - j
   - [ ] find or edit the icon so we have a female + calf icon - j
     - [ ] add attribution for the existing icons
-    - [ ] edit or find the other two
+    - [x] edit or find the other two - l
   - [ ] add multiple icons when there are multiple moose - j
   - [ ] pages in app with react router: - m + g
     - [ ] about page
