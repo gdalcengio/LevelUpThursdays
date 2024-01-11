@@ -1,4 +1,6 @@
+import { Age } from "../../UI/Enums";
 import {
+  ACTIVITY_DELETE_MOOSE,
   ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
@@ -31,8 +33,8 @@ function createMooseSightingStateReducer(
           mooseArray: [
             ...state.mooseArray,
             {
-              id: Math.floor(Math.random() * (1000000 - 1 + 1)) + 1, //Julian's fancy random whole number
-              age: null,
+              id: state.mooseArray.length + 1,
+              age: Age.adult,
               gender: null,
             },
           ],
@@ -47,20 +49,19 @@ function createMooseSightingStateReducer(
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
-          location: { ...action.payload } ,
+          location: { ...action.payload },
         };
       }
       case ACTIVITY_UPDATE_MOOSE: {
         const id = action.payload?.id;
-        const meese = state.mooseArray;
-        const mooseIndex = meese.findIndex((moose) => {
-          return moose.id === id;
-        });
+        const meese = [...state.mooseArray];
+        const mooseIndex = meese.findIndex((moose) => moose.id === id);
         if (mooseIndex === -1) return { ...state };
 
         const updatedMoose = {
-          id: meese[mooseIndex].id,
-          age: action.payload.age ? action.payload.age : meese[mooseIndex].age,
+          ...meese[mooseIndex],
+          age: action.payload.age ?? meese[mooseIndex].age,
+          gender: action.payload.gender ?? meese[mooseIndex].gender,
         };
 
         meese[mooseIndex] = updatedMoose;
@@ -69,6 +70,24 @@ function createMooseSightingStateReducer(
           ...state,
           mooseArray: meese,
         };
+      }
+      case ACTIVITY_DELETE_MOOSE: {
+        const id = action.payload?.id;
+        let meese = [...state.mooseArray];
+
+        meese.splice(id - 1, 1);
+        
+        meese = meese.map((moose, index) => {
+          return {
+            ...moose,
+            id: index + 1
+          };
+        });
+
+        return {
+          ...state,
+          mooseArray: meese
+        }
       }
       default:
         return state;

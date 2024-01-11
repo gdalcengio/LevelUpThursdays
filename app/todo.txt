@@ -1,3 +1,21 @@
+0.20:
+
+  - [x] remove blanabba - l
+  - [x] replace age with enum of 'adult' 'calf' - g
+  - [x] add a moose tracker / bcgov header + footer - j
+  - [x] find or edit the icon so we have a female + calf icon - j
+    - [ ] add attribution for the existing icons
+    - [x] edit or find the other two - l
+  - [x] add multiple icons when there are multiple moose - j
+  - [ ] pages in app with react router: - m + g
+    - [ ] about page
+    - [x] record sighting
+    - [ ] view & sync past sightings
+        - [ ] wire up a side effect to call the api from the app
+       - [ ] api make the endpoint update the db if it doesnt already
+    - [x] page to view the regs (pdf) - g
+
+0.1.0: 
 - [x] main UI elements:
     - [x] a panel for user inputs and displaying feedback
     - [x] a panel for displaying a map
@@ -24,7 +42,7 @@
     - [x] add gender to things we record for each moose
 
 
-    - [x] prompt for loctation
+    - [x] prompt for lactation
         - [ ] let user enter or 
         - [x] grab from geolocation
 
@@ -43,12 +61,12 @@
     - [ ] geojson component for past sightings & a toggle
 
 # Julian
-- [ ] map element work:
-    - [ ] a child element to the map called CurrentMooseLocation
-    - [ ] will return a <Marker/> (from react-leaflet)
-    - [ ] uses location state 
+- [x] map element work:
+    - [x] a child element to the map called CurrentMooseLocation
+    - [x] will return a <Marker/> (from react-leaflet)
+    - [x] uses location state 
 
-    - [ ] display results on a map
+    - [x] display results on a map
 
 
 - [ ] maybe look at using react router
