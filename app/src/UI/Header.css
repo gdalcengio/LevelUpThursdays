@@ -34,3 +34,20 @@
     color: white;
     margin-left: 20px;
 }
+
+.about-button-container {
+  display: flex;
+  align-items: center;
+  justify-content: start;
+  flex-grow: 1;
+}
+
+.about-button {
+  background-color: #FCBA19;
+  border-color: initial;
+  color: #003366;
+  padding: 1em 1.2em;
+  border-radius: 2em;
+  margin: 5px;
+  cursor: pointer;
+}

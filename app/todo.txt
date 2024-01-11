@@ -4,11 +4,11 @@
   - [x] replace age with enum of 'adult' 'calf' - g
   - [x] add a moose tracker / bcgov header + footer - j
   - [x] find or edit the icon so we have a female + calf icon - j
-    - [ ] add attribution for the existing icons
+    - [x] add attribution for the existing icons
     - [x] edit or find the other two - l
   - [x] add multiple icons when there are multiple moose - j
   - [ ] pages in app with react router: - m + g
-    - [ ] about page
+    - [x] about page
     - [x] record sighting
     - [ ] view & sync past sightings
         - [ ] wire up a side effect to call the api from the app

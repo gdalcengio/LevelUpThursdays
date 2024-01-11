@@ -7,6 +7,7 @@ import { Header } from "./UI/Header";
 import { Footer } from "./UI/Footer";
 import { Regs } from "./UI/Regs";
 import { Route, Routes, BrowserRouter } from "react-router-dom";
+import { About } from "./UI/About";
 
 function App() {
   const ref = useRef(0);
@@ -15,8 +16,8 @@ function App() {
 
   return (
     <div className="rootContainer">
-      <Header />
       <BrowserRouter>
+      <Header />
         <Routes>
           <Route
             path="/"
@@ -28,6 +29,7 @@ function App() {
             }
           />
           <Route path="/Regulations" element={<Regs />} />
+          <Route path="/About" element={<About />} />
         </Routes>
         <Footer />
       </BrowserRouter>
