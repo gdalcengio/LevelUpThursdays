@@ -8,7 +8,8 @@ import mooseSightingSaga from './sagas/mooseSightingsSaga';
 
 const setupStore = (configuration: AppConfig) => {
   const logger = createLogger({
-    collapsed: true
+    collapsed: true,
+    diff: true
   });
   let middlewares;
 

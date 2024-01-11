@@ -14,11 +14,13 @@ class MooseSightingState {
   recordingMooseInProgress: boolean;
   location: any;
   mooseArray: any[];
+  allSightings: any[];
 
   constructor() {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
+    this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
   }
 }
 const initialState = new MooseSightingState();
