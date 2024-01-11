@@ -51,13 +51,6 @@ const MapMarkers = (props: any) => {
   });
 
 
-  const markerState = useSelector(
-    (state: any) => state.MooseSightingsState.location
-  ) as LocationState;
-  const markerPosition: [number, number] = [
-    markerState.latitude ?? defaultLocation[0],
-    markerState.longitude ?? defaultLocation[1],
-  ];
   const mooseArray = useSelector(
     (state: any) => state.MooseSightingsState.mooseArray
   ).slice(0, 5);
@@ -77,25 +70,6 @@ const MapMarkers = (props: any) => {
       markerState.latitude ?? defaultLocation[0],
       markerState.longitude ?? defaultLocation[1]
   ];
-
-  return <div className="MapPanel">
-      <MapContainer className="MapContainer" center={defaultLocation} zoom={13} scrollWheelZoom={false}>
-          <TileLayer
-              attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-              url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-          />
-          {markerState.latitude != null && markerState.longitude != null && (
-              <>
-                  <Marker position={markerPosition} icon={mooseIcon}>
-                    <Popup>
-                          Latitude: {markerPosition[0]}, Longitude: {markerPosition[1]}
-                      </Popup>
-                  </Marker>
-                  <ChangeView center={markerPosition} />
-              </>
-          )}
-      </MapContainer>
-  </div>
 
 
   const getOffsetLocation = (
