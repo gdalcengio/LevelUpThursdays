@@ -1,14 +1,32 @@
+0.30:
+
+    - [ ] App making API call to submit sightings
+        - [ ] UI To tell user they are making a sighting:
+            - [ ] Title or something to indicate # L
+        - [ ] Button to persist to disk (save) # J
+            - [ ] A redux saga action handler - action dispatched and side effect handler writes to disk
+        - [ ] UI to list all sightings and if submitted or not # G
+            - [ ] Another page to list all previous sightings, summarize them in one line and list them # 
+            - [ ] Shows status (synced or not)
+
+        # Getting in to API stuff
+        - [ ] UI to submit all sightings
+            - [ ] Have a button to sync them if online
+            - [ ] App indicating it worked or not
+            
+        - [ ] Sightings landing in a table
+
 0.20:
 
   - [x] remove blanabba - l
   - [x] replace age with enum of 'adult' 'calf' - g
   - [x] add a moose tracker / bcgov header + footer - j
   - [x] find or edit the icon so we have a female + calf icon - j
-    - [x] add attribution for the existing icons
+    - [ ] add attribution for the existing icons
     - [x] edit or find the other two - l
   - [x] add multiple icons when there are multiple moose - j
   - [ ] pages in app with react router: - m + g
-    - [x] about page
+    - [ ] about page
     - [x] record sighting
     - [ ] view & sync past sightings
         - [ ] wire up a side effect to call the api from the app
