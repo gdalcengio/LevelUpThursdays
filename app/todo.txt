@@ -5,9 +5,19 @@
             - [x] Title or something to indicate # L
         - [ ] Button to persist to disk (save) # J
             - [ ] A redux saga action handler - action dispatched and side effect handler writes to disk
-        - [x] UI to list all sightings and if submitted or not # G
-            - [x] Another page to list all previous sightings, summarize them in one line and list them # 
-            - [x] Shows status (synced or not)
+        - [ ] UI to list all sightings and if submitted or not # G
+            - [ ] Another page to list all previous sightings, summarize them in one line and list them # 
+            - [ ] Shows status (synced or not)
+        - [ ] refactor moose sighting save # L
+          Current state:
+            - in the component we load local storage into a variable
+            - add items to array (local variable)
+            - rewrite to localstorage
+          on click of save button:
+            - [ ] dispatch action to update moosesightingsarray in state
+            - [ ] side effect to persist them
+            - [ ] listen in saga   
+            - [ ] run handler function to update local storage
 
         # Getting in to API stuff
         - [ ] UI to submit all sightings

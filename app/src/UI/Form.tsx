@@ -1,14 +1,14 @@
 import { useRef, useState } from "react";
 import "./Form.css";
 import { useDispatch, useSelector } from "react-redux";
-import { ACTIVITY_CLEAR_MOOSE_ARRAY, ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER } from "../state/actions";
+import { ACTIVITY_CLEAR_MOOSE_ARRAY, ACTIVITY_DELETE_MOOSE, GET_GEOLOCATION, USER_CLICK_ADD_MOOSE, USER_CLICK_RECORD_GENDER, USER_SAVE_SIGHTINGS } from "../state/actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../state/actions/index";
 import { Age } from "./Enums";
 
 export const FormPanel = (props: any) => {
   const ref = useRef(0);
   ref.current += 1;
-  console.log("%FormPanel render:" + ref.current.toString(), "color: yellow");
+  // console.log("%FormPanel render:" + ref.current.toString(), "color: yellow");
 
   const dispatch = useDispatch();
 
@@ -22,44 +22,44 @@ export const FormPanel = (props: any) => {
   const mooseArray = useSelector((state: any) => state.MooseSightingsState.mooseArray);
   const location = useSelector((state: any) => state.MooseSightingsState.location);
 
-  const saveSightingToDisk = () => {
+  // const saveSightingToDisk = () => {
 
-    let storedSightings = JSON.parse(localStorage.getItem("Sightings"))
+  //   let storedSightings = JSON.parse(localStorage.getItem("Sightings"))
 
-    if (storedSightings) {
-      const newSighting: object = {
-        id: crypto.randomUUID(),
-            status: 'synced',
-            syncDate: Date.now(),
-            dateOfSighting: Date.now(),
-            location: location,
-            mooseArray: mooseArray
-      }
+  //   if (storedSightings) {
+  //     const newSighting: object = {
+  //       id: crypto.randomUUID(),
+  //           status: 'synced',
+  //           syncDate: Date.now(),
+  //           dateOfSighting: Date.now(),
+  //           location: location,
+  //           mooseArray: mooseArray
+  //     }
 
-      storedSightings.sightings.push(newSighting)
-      localStorage.setItem("Sightings", JSON.stringify(storedSightings))
+  //     storedSightings.sightings.push(newSighting)
+  //     localStorage.setItem("Sightings", JSON.stringify(storedSightings))
 
-      dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
-    }
+  //     dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+  //   }
 
-    else {
-      const firstSighting: object = {
-        sightings: [
-          {
-            id: crypto.randomUUID(),
-            status: 'synced',
-            syncDate: Date.now(),
-            dateOfSighting: Date.now(),
-            location: location,
-            mooseArray: mooseArray
-          }
-        ]
-      }
+  //   else {
+  //     const firstSighting: object = {
+  //       sightings: [
+  //         {
+  //           id: crypto.randomUUID(),
+  //           status: 'synced',
+  //           syncDate: Date.now(),
+  //           dateOfSighting: Date.now(),
+  //           location: location,
+  //           mooseArray: mooseArray
+  //         }
+  //       ]
+  //     }
 
-      localStorage.setItem("Sightings", JSON.stringify(firstSighting))
-      dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
-    }
-  }
+  //     localStorage.setItem("Sightings", JSON.stringify(firstSighting))
+  //     dispatch({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+  //   }
+  // }
 
   return (
     <div className="FormPanel">
@@ -134,7 +134,7 @@ export const FormPanel = (props: any) => {
           <button
             className="saveMooseButton"
             onClick={() => {
-              saveSightingToDisk()
+              dispatch({ type: USER_SAVE_SIGHTINGS, payload: { mooseArray, location } })
             }}
           >
             Save
