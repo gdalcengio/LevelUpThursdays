@@ -2,12 +2,15 @@ import { channel } from "redux-saga";
 import {
   all,
   put,
+  call,
   take,
   takeEvery
 } from "redux-saga/effects";
 import {
   ACTIVITY_LOCATION_SET,
+  USER_SAVE_SIGHTINGS,
   GET_GEOLOCATION,
+  ACTIVITY_CLEAR_MOOSE_ARRAY,
 } from "../actions";
 
 function* handle_USER_CLICK_RECORD_MOOSE (action: any) {
@@ -52,7 +55,30 @@ function* getGeoLocation(action: any) {
 
 
 function* mooseSightingSaga() {
-  yield all([takeEvery(GET_GEOLOCATION, getGeoLocation)]);
+  yield all([
+    takeEvery(GET_GEOLOCATION, getGeoLocation),
+    takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
+  ]);
+}
+
+function* handleSaveMeese(action: any) {
+  const { mooseArray, location } = action;
+  let storedSightings = JSON.parse(localStorage.getItem("Sightings")) || [];
+  const newSighting: object = {
+        id: crypto.randomUUID(),
+        status: 'synced',
+        syncDate: Date.now(),
+        dateOfSighting: Date.now(),
+        location: location,
+        mooseArray: mooseArray,
+      };
+  storedSightings.push(newSighting);
+  localStorage.setItem("Sightings", JSON.stringify(storedSightings));
+  yield put({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+}
+
+function* handle_USER_SAVE_SIGHTINGS(action: any) {
+  yield call(handleSaveMeese, action.payload);
 }
 
 export default mooseSightingSaga;

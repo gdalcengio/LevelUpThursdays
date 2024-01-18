@@ -4,6 +4,7 @@ import {
   ACTIVITY_LOCATION_SET,
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
+  USER_SAVE_SIGHTINGS,
   ACTIVITY_CLEAR_MOOSE_ARRAY
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
@@ -49,6 +50,13 @@ function createMooseSightingStateReducer(
           recordingMooseInProgress: true,
         };
       }
+      case USER_SAVE_SIGHTINGS: {
+        return {
+          ...state,
+          mooseArray: action.payload.mooseArray,
+          location: location,
+        };
+      }
       case ACTIVITY_LOCATION_SET: {
         return {
           ...state,
@@ -86,7 +94,6 @@ function createMooseSightingStateReducer(
             id: index + 1
           };
         });
-
         return {
           ...state,
           mooseArray: meese
