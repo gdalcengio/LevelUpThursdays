@@ -3,14 +3,33 @@
 
 today todo:
 
-- [ ] MW: Save button & handler code all working and page that lists sightings working as expected
+- [x] MW: Save button & handler code all working and page that lists sightings working as expected
 - [ ] J: API integration:
         - [ ] Update OpenAPI Spec for endpoint to accept a list of sightings from a client
         - [ ] Make a side effect function client side to call API with matching interface data and get a 200
         - [ ] Update API http handler to do the database stuff we need (and any db subtasks)
         - [ ] All happens on button click, user sees if it worked or not
+
+        Misc UX improvements:
+- [ ] Need a home button
+- [ ] Footer on sightings page needs to be stuck on bottom
+- [ ] snackbars for successful save / api events
+    - [ ] state array with notifications
+    - [ ] action to dispatch to add to array
+    - [ ] snackbar component to alert user of events (like 'saved', 'synched' 'error trying to submit something')
+    - [ ] action to remove notification from array (user hits clear, or on first render its gonna be dispatched with a timeout or something)
+
+React leaflet stuff:
 - [ ] User can see all sightings on map, not just the current one
+    - [ ] component to show all sightings
+    - [ ] they are different colour depending on sync, current sighting, etc
+    - [ ] Bonus goal - layer toggles
+
 - [ ] User can clear their map or delete individual sightings (that haven't been synced)
+    - [x] N: User can clear current sighting
+    - [ ] On sightings page, user can delete an indivdual sighting (not synced) which will also fire write to disk action
+
+- [ ] 
 
 0.30:
 
