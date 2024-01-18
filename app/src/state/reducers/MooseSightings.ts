@@ -21,7 +21,7 @@ class MooseSightingState {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
-    this.allSightings = []//localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
+    this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
   }
 }
 const initialState = new MooseSightingState();
