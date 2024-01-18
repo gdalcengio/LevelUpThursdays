@@ -8,15 +8,13 @@ import mooseSightingSaga from './sagas/mooseSightingsSaga';
 
 const setupStore = (configuration: AppConfig) => {
   const logger = createLogger({
+    logErrors: true,
     collapsed: true,
     diff: true
   });
   let middlewares;
 
-  const sagaMiddleware = createSagaMiddleware({
-    onError: async (e, errorInfo) => {
-    }
-  });
+  const sagaMiddleware = createSagaMiddleware();
 
   let store;
   if (configuration.DEBUG) {

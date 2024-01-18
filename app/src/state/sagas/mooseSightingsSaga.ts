@@ -57,29 +57,8 @@ function* getGeoLocation(action: any) {
 
 
 
-function* handleSaveMeese(action: any) {
- /* const { mooseArray, location } = action;
-  let storedSightings = JSON.parse(localStorage.getItem("Sightings")) || [];
-  const newSighting: object = {
-        id: crypto.randomUUID(),
-        status: 'synced',
-        syncDate: Date.now(),
-        dateOfSighting: Date.now(),
-        location: location,
-        mooseArray: mooseArray,
-      };
-  storedSightings.push(newSighting);
-  localStorage.setItem("Sightings", JSON.stringify(storedSightings));
-  yield put({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
-  */
-}
-
-function* write_sightings_to_disk() {
-  console.log('%cbanana', 'color: red')
-  const sightings = yield select((state: any) => state.MooseSightingState.allSightings);
-  console.log(typeof sightings)
-  console.dir(sightings)
-
+function* write_sightings_to_disk(): Generator<any> {
+  const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
   localStorage.setItem("Sightings", JSON.stringify(sightings));
 }
 
@@ -90,11 +69,17 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 
 
 function* mooseSightingSaga() {
+  try {
   yield all([
     takeEvery(GET_GEOLOCATION, getGeoLocation),
     takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
     takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
   ]);
+
+  }
+  catch(e) {
+    console.log(e)
+  }
 }
 
 

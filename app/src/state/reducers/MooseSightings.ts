@@ -21,9 +21,7 @@ class MooseSightingState {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
-    this.allSightings = localStorage.getItem("Sightings")
-      ? JSON.parse(localStorage.getItem("Sightings")!)
-      : [];
+    this.allSightings = []//localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
   }
 }
 const initialState = new MooseSightingState();
@@ -53,6 +51,7 @@ function createMooseSightingStateReducer(
         };
       }
       case USER_SAVE_SIGHTINGS: {
+        //const sightings  = state.allSightings? state.allSightings : [];
         return {
           ...state,
           mooseArray: [],
