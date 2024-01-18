@@ -1,14 +1,28 @@
+
+
+
+today todo:
+
+- [ ] MW: Save button & handler code all working and page that lists sightings working as expected
+- [ ] J: API integration:
+        - [ ] Update OpenAPI Spec for endpoint to accept a list of sightings from a client
+        - [ ] Make a side effect function client side to call API with matching interface data and get a 200
+        - [ ] Update API http handler to do the database stuff we need (and any db subtasks)
+        - [ ] All happens on button click, user sees if it worked or not
+- [ ] User can see all sightings on map, not just the current one
+- [ ] User can clear their map or delete individual sightings (that haven't been synced)
+
 0.30:
 
     - [ ] App making API call to submit sightings
         - [ ] UI To tell user they are making a sighting:
             - [x] Title or something to indicate # L
-        - [ ] Button to persist to disk (save) # J
-            - [ ] A redux saga action handler - action dispatched and side effect handler writes to disk
+        - [x] Button to persist to disk (save) # J
+            - [x] A redux saga action handler - action dispatched and side effect handler writes to disk
         - [ ] UI to list all sightings and if submitted or not # G
             - [ ] Another page to list all previous sightings, summarize them in one line and list them # 
             - [ ] Shows status (synced or not)
-        - [ ] refactor moose sighting save # L
+        - [x] refactor moose sighting save # L
           Current state:
             - in the component we load local storage into a variable
             - add items to array (local variable)

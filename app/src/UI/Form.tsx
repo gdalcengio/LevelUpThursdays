@@ -134,7 +134,7 @@ export const FormPanel = (props: any) => {
           <button
             className="saveMooseButton"
             onClick={() => {
-              dispatch({ type: USER_SAVE_SIGHTINGS, payload: { mooseArray, location } })
+              dispatch({ type: USER_SAVE_SIGHTINGS })
             }}
           >
             Save

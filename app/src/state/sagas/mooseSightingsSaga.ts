@@ -4,13 +4,15 @@ import {
   put,
   call,
   take,
-  takeEvery
+  takeEvery,
+  select
 } from "redux-saga/effects";
 import {
   ACTIVITY_LOCATION_SET,
   USER_SAVE_SIGHTINGS,
   GET_GEOLOCATION,
   ACTIVITY_CLEAR_MOOSE_ARRAY,
+  WRITE_SIGHTINGS_TO_DISK,
 } from "../actions";
 
 function* handle_USER_CLICK_RECORD_MOOSE (action: any) {
@@ -54,15 +56,9 @@ function* getGeoLocation(action: any) {
 }
 
 
-function* mooseSightingSaga() {
-  yield all([
-    takeEvery(GET_GEOLOCATION, getGeoLocation),
-    takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
-  ]);
-}
 
 function* handleSaveMeese(action: any) {
-  const { mooseArray, location } = action;
+ /* const { mooseArray, location } = action;
   let storedSightings = JSON.parse(localStorage.getItem("Sightings")) || [];
   const newSighting: object = {
         id: crypto.randomUUID(),
@@ -75,10 +71,32 @@ function* handleSaveMeese(action: any) {
   storedSightings.push(newSighting);
   localStorage.setItem("Sightings", JSON.stringify(storedSightings));
   yield put({ type: ACTIVITY_CLEAR_MOOSE_ARRAY });
+  */
 }
 
-function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  yield call(handleSaveMeese, action.payload);
+function* write_sightings_to_disk() {
+  console.log('%cbanana', 'color: red')
+  const sightings = yield select((state: any) => state.MooseSightingState.allSightings);
+  console.log(typeof sightings)
+  console.dir(sightings)
+
+  localStorage.setItem("Sightings", JSON.stringify(sightings));
 }
+
+
+function* handle_USER_SAVE_SIGHTINGS(action: any) {
+  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
+}
+
+
+function* mooseSightingSaga() {
+  yield all([
+    takeEvery(GET_GEOLOCATION, getGeoLocation),
+    takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
+    takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
+  ]);
+}
+
+
 
 export default mooseSightingSaga;

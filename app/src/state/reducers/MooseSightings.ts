@@ -5,7 +5,7 @@ import {
   USER_CLICK_ADD_MOOSE,
   USER_CLICK_RECORD_MOOSE,
   USER_SAVE_SIGHTINGS,
-  ACTIVITY_CLEAR_MOOSE_ARRAY
+  ACTIVITY_CLEAR_MOOSE_ARRAY,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -21,7 +21,9 @@ class MooseSightingState {
     this.location = "";
     this.recordingMooseInProgress = false;
     this.mooseArray = [];
-    this.allSightings = localStorage.getItem("Sightings") ? JSON.parse(localStorage.getItem("Sightings")!) : [];
+    this.allSightings = localStorage.getItem("Sightings")
+      ? JSON.parse(localStorage.getItem("Sightings")!)
+      : [];
   }
 }
 const initialState = new MooseSightingState();
@@ -53,8 +55,19 @@ function createMooseSightingStateReducer(
       case USER_SAVE_SIGHTINGS: {
         return {
           ...state,
-          mooseArray: action.payload.mooseArray,
-          location: location,
+          mooseArray: [],
+          location: [],
+          allSightings: [
+            ...state.allSightings,
+            {
+              mooseArray: state.mooseArray,
+              location: state.location,
+              id: crypto.randomUUID(),
+              status: "Not Synced",
+              syncDate: null,
+              dateOfSighting: Date.now(),
+            },
+          ],
         };
       }
       case ACTIVITY_LOCATION_SET: {
@@ -87,23 +100,23 @@ function createMooseSightingStateReducer(
         let meese = [...state.mooseArray];
 
         meese.splice(id - 1, 1);
-        
+
         meese = meese.map((moose, index) => {
           return {
             ...moose,
-            id: index + 1
+            id: index + 1,
           };
         });
         return {
           ...state,
-          mooseArray: meese
-        }
+          mooseArray: meese,
+        };
       }
       case ACTIVITY_CLEAR_MOOSE_ARRAY: {
         return {
           ...state,
-          mooseArray: []
-        }
+          mooseArray: [],
+        };
       }
       default:
         return state;

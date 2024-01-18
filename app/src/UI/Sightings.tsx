@@ -1,4 +1,4 @@
-import { useRef } from "react";
+import { useEffect, useRef } from "react";
 import "./Sightings.css";
 import Accordion from '@mui/material/Accordion';
 import AccordionDetails from '@mui/material/AccordionDetails';
@@ -12,6 +12,8 @@ export const Sightings = (props: any) => {
   console.log("%Sightings render:" + ref.current.toString(), "color: yellow");
   
   const storedSightings = useSelector((state: any) => state.MooseSightingsState.allSightings);
+
+
 
   return (
     <div className="sightings-container">

@@ -4,6 +4,8 @@ import { useNavigate } from "react-router-dom";
 export const Header = (props: any) => {
   const navigate = useNavigate();
 
+
+
   const goHome = () => {
     navigate('/About');
   }
