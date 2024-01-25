@@ -13,7 +13,7 @@ export const Sightings = (props: any) => {
   
   const storedSightings = useSelector((state: any) => state.MooseSightingsState.allSightings);
 
-  console.log(JSON.stringify({ sightings: storedSightings.sightings }))
+  console.log(JSON.stringify({ sightings: storedSightings}))
 
   function prepareSightingsForApi(sightings: any) {
     return sightings.map(sighting => {
@@ -34,7 +34,7 @@ export const Sightings = (props: any) => {
 
   const syncToDb = async () => {
     try {
-      const validatedSightings = prepareSightingsForApi(storedSightings.sightings)
+      const validatedSightings = prepareSightingsForApi(storedSightings)
       const response = await fetch('http://localhost:7080/recordSightings', {
         method: 'POST',
         headers: {
@@ -62,8 +62,8 @@ export const Sightings = (props: any) => {
           Sync
         </button>
       </span>
-      {storedSightings.sightings.length > 0 ?
-      storedSightings.sightings.map((sighting: any) => {
+      {storedSightings?.length > 0 ?
+      storedSightings?.map((sighting: any) => {
         return (
         <Accordion key={sighting.id} className="sighting">
           <AccordionSummary className="sighting-header" aria-controls="panel-content">

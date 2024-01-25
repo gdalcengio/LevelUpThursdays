@@ -1,12 +1,14 @@
-import sqlite3 from "sqlite3";
-import { open, Database } from "sqlite";
+import sqlite3 from  "sqlite3";
+
+//import { open, Database } from "sqlite";
 
 // you would have to import / invoke this in another file
 export async function openDb() {
-  return open("moose.db", {});
+  const db = new sqlite3.Database(':memory:');
+  return  db
 }
 
-export async function createDb(dbConnection: Database) {
+export async function createDb(dbConnection: any) {
   const createTableSql = `CREATE TABLE IF NOT EXISTS Moose
                             (clientId real not Null, 
                             sightingId integer not Null,
@@ -20,7 +22,7 @@ export async function createDb(dbConnection: Database) {
   dbConnection.run(createTableSql);
 }
 
-export async function insertMeese(dbConnection: Database, postbody: any) {
+export async function insertMeese(dbConnection: any, postbody: any) {
   let insertSQL =
     "INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES ";
   const sightingId = Math.floor(Math.random() * 10001);
@@ -38,7 +40,7 @@ export async function insertMeese(dbConnection: Database, postbody: any) {
   dbConnection.run(insertSQL);
 }
 
-export async function insertSightingMoose(dbConnection: Database, postbody: any) {
+export async function insertSightingMoose(dbConnection: any, postbody: any) {
   try {
     let values = [];
     postbody.sightings.forEach(sighting => {
@@ -60,7 +62,7 @@ export async function insertSightingMoose(dbConnection: Database, postbody: any)
 
 
 
-export async function findUserMeese(dbConnection: Database, user: any) {
+export async function findUserMeese(dbConnection: any, user: any) {
   let findUserSQL = 'SELECT * FROM Moose WHERE clientId = ?'
   console.log(findUserSQL);
   dbConnection.run(findUserSQL, user);
