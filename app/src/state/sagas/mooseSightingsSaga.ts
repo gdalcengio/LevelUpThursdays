@@ -64,6 +64,9 @@ function* write_sightings_to_disk(): Generator<any> {
 
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
+
+  // validate input
+
   yield put({ type: WRITE_SIGHTINGS_TO_DISK });
 }
 

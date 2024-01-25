@@ -1,4 +1,16 @@
 
+today;
+
+
+- [ ] Validation on save button task:
+    - [ ] Modify some actions and side effects:
+        - [ ] User save sighting - displatched on click, but doens't hit reducer   
+            - [ ] does Validation
+            - [ ] throws User save sighting failure if doesn't pass Validation
+            - [ ] puts User save sighting success with updated state if pass, that action hits reducer
+        - [ ] Write to disk - this gets fired on User save sighting success
+        - [ ] For the user save sighting failure - hits reducer, writes to a current error property
+        - [ ] New snackbar component that listens to error property and pops up 
 
 
 today todo:
