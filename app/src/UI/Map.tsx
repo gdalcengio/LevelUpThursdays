@@ -32,21 +32,21 @@ const mooseIconCalf = new Icon({
 });
 
 const mooseNotSyncIconMale = new Icon({
-  iconUrl: "moose.png",
+  iconUrl: "moosegreen.png",
   iconSize: [30, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
 const mooseNotSyncIconFemale = new Icon({
-  iconUrl: "fmoose.png",
+  iconUrl: "fmoosegreen.png",
   iconSize: [30, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
   shadowSize: [41, 41],
 });
 const mooseNotSyncIconCalf = new Icon({
-  iconUrl: "calf.png",
+  iconUrl: "calfgreen.png",
   iconSize: [30, 41],
   iconAnchor: [12, 41],
   popupAnchor: [1, -34],
@@ -140,7 +140,7 @@ const MapMarkers = (props: any) => {
     <>
       {mooseArray.map((moose: any, index: number) => {
         const position = getOffsetLocation(index, markerPosition);
-        const mooseIcon = getMooseIcon(moose);
+        const mooseIcon = getMooseIcon(moose, 0);
         return <Marker key={index} position={position} icon={mooseIcon} />;
       })}
     </>
@@ -161,7 +161,7 @@ const MapMarkers = (props: any) => {
       {allSightings.map((sighting: any, index: number) => {
         return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
           const position = getOffsetLocation(index, markerPosition);
-          const mooseIcon = getMooseIcon(moose);
+          const mooseIcon = getMooseIcon(moose, 1);
           return <Marker key={index + mooseIndex} position={position} icon={mooseIcon} />;
         })
       })}
@@ -172,7 +172,7 @@ const MapMarkers = (props: any) => {
     <>
       <Meese key={zoomed} />
       {/* <synchedMeese key={}/> */}
-      <NotSynchedMeese key={zoomed}/>
+      <NotSynchedMeese key={allSightings[0].id}/>
     </>
   )
 };
