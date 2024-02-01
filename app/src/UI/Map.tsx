@@ -172,7 +172,7 @@ const MapMarkers = (props: any) => {
     <>
       <Meese key={zoomed} />
       {/* <synchedMeese key={}/> */}
-      <NotSynchedMeese key={allSightings[0].id}/>
+      <NotSynchedMeese key={zoomed}/>
     </>
   )
 };
