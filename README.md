@@ -1,4 +1,3 @@
-
 <br />
 <div align="center">
   <a href="https://github.com/lunamoonmoon/MooseTrackerV2">
@@ -15,8 +14,6 @@
   </p>
 </div>
 
-
-
 <!-- TABLE OF CONTENTS -->
 <details>
   <summary>Table of Contents</summary>
@@ -32,42 +29,40 @@
   </ol>
 </details>
 
-
-
 <!-- ABOUT THE PROJECT -->
+
 ## About The Project
 
 An updated version of the Moose Tracker application.
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 ### Built With
 
-* [![Typescript](https://img.shields.io/badge/Typescript-blue)](https://www.typescriptlang.org/)
-* [![React](https://img.shields.io/badge/React-blue)](https://reactjs.org/)
-
+- [![Typescript](https://img.shields.io/badge/Typescript-blue)](https://www.typescriptlang.org/)
+- [![React](https://img.shields.io/badge/React-blue)](https://reactjs.org/)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-
 <!-- GETTING STARTED -->
+
 ## Getting Started
 
-Please follow these instructions on setting up in an IOS simulation.
+Please follow these instructions on setting up in an IOS/Android simulation.
 
 ### For IOS builds
-1. ``` Brew install cocoapods ```
 
-2. ``` cd MooseTrackerV2/app/ios/App ```
+1. `Brew install cocoapods`
 
-3. ``` pod install ```
+2. `cd MooseTrackerV2/app/ios/App`
 
-4. ``` cd MooseTrackerV2/app ```
+3. `pod install`
 
-5. ``` npx cap sync ```
+4. `cd MooseTrackerV2/app`
 
-6. ``` npx cap open ios ```
+5. `npx cap sync`
+
+6. `npx cap open ios`
 
 7. In xcode hit play icon
 
@@ -78,3 +73,19 @@ Please follow these instructions on setting up in an IOS simulation.
 10. Hit play button and simulator should start
 
 Tested on xcode 15.0.1
+
+### For Android builds
+
+1. Download the latest android studio (last tested on Android Studio Hedgehog | 2023.1.1 Patch 2)
+
+2. Run android studio and if needed, set the path of the SDK (can be downloaded and linked in preferences -> Languages & Frameworks -> Android SDK )
+
+3. `cd MooseTrackerV2/app`
+
+4. `npx cap sync`
+
+5. `npx cap open android`
+
+6. Find the device manager tab on the sidebar and create a virtual device (tested on medium phone)
+
+7. Select the device in the top dropdown and hit the play button
