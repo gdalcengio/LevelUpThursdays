@@ -164,7 +164,7 @@ const MapMarkers = (props: any) => {
         return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
           const position = getOffsetLocation(index, markerPosition);
           const mooseIcon = getMooseIcon(moose, 1);
-          const mooseDate = sighting.dateOfSighting;
+          const mooseDate = new Date(sighting.dateOfSighting).toLocaleDateString();
           return (
             <Marker key={index + mooseIndex} position={position} icon={mooseIcon} >
               <Popup>
