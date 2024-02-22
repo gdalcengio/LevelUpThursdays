@@ -1,4 +1,5 @@
 import { channel } from "redux-saga";
+import { useDispatch } from "react-redux";
 import {
   all,
   put,
@@ -14,16 +15,18 @@ import {
   ACTIVITY_CLEAR_MOOSE_ARRAY,
   WRITE_SIGHTINGS_TO_DISK,
   USER_SAVE_SIGHTINGS_SUCCESS,
-  USER_SAVE_SIGHTINGS_FAIL
+  USER_SAVE_SIGHTINGS_FAIL,
+  SYNC_SIGHTINGS_TO_DB,
+  SIGHTING_SYNC_SUCCESSFUL,
 } from "../actions";
 
-function* handle_USER_CLICK_RECORD_MOOSE (action: any) {
+function* handle_USER_CLICK_RECORD_MOOSE(action: any) {
   yield put({ type: ACTIVITY_LOCATION_SET, payload: location });
 }
 
 
 function* getGeoLocation(action: any) {
- const coordChannel = channel();
+  const coordChannel = channel();
 
   console.log("in the get geo function");
   const options = {
@@ -50,7 +53,7 @@ function* getGeoLocation(action: any) {
 
 
 
-  while(true) {
+  while (true) {
     const action: any = yield take(coordChannel);
     yield put(action);
     return;
@@ -59,14 +62,14 @@ function* getGeoLocation(action: any) {
 
 
 
-function* write_sightings_to_disk(): Generator<any> {
+function* write_sightings_to_disk(action: any): Generator<any> {
   const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
   localStorage.setItem("Sightings", JSON.stringify(sightings));
 }
 
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  
+
   const mooseSightings: any = yield select((state: any) => state.MooseSightingsState);
 
   const mooseArray = mooseSightings.mooseArray;
@@ -82,7 +85,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   }
 
   if (errors.length) {
-    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errors} });
+    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
   }
   else {
     yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
@@ -90,26 +93,80 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
 
 }
 
+<<<<<<< HEAD
 function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
   yield put({ type: WRITE_SIGHTINGS_TO_DISK });
 }
 
+=======
+function prepareSightingsForApi(sightings: any) {
+  return sightings.map(sighting => {
+    return {
+      id: sighting.id,
+      dateOfSighting: sighting.dateOfSighting,
+      status: "Synced",
+      syncDate: Date.now(),
+      location: [sighting.location.latitude, sighting.location.longitude],
+      mooseArray: sighting.mooseArray.map(moose => ({
+        id: moose.id,
+        age: moose.age,
+        gender: moose.gender || "unknown"
+      }))
+    };
+  });
+}
+>>>>>>> 9b1225a (Cleanup/Improvements)
 
-function* mooseSightingSaga() {
+function fetchSightings(validatedSightings: any) {
+  return fetch('http://localhost:7080/recordSightings', {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({ sightings: validatedSightings }),
+  })
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(errorResponse => Promise.reject(new Error(errorResponse)));
+      }
+      return response.json();
+    });
+}
+
+function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
   try {
-  yield all([
-    takeEvery(GET_GEOLOCATION, getGeoLocation),
-    takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
-    takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS),
-    takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
-  ]);
+    const storedSightings = yield select((state) => state.MooseSightingsState.allSightings);
+    const validatedSightings = prepareSightingsForApi(storedSightings);
 
-  }
-  catch(e) {
-    console.log(e)
+    const data = yield call(fetchSightings, validatedSightings);
+
+    yield put({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data } });
+    console.log('Sightings synced successfully:', data);
+  } catch (error) {
+    console.log(error);
   }
 }
 
+function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
+  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
+}
 
+function* mooseSightingSaga() {
+  try {
+    yield all([
+      takeEvery(GET_GEOLOCATION, getGeoLocation),
+      takeEvery(USER_SAVE_SIGHTINGS, handle_USER_SAVE_SIGHTINGS),
+      takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
+      takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS),
+      takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
+      takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
+      takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS)
+    ]);
+
+  }
+  catch (e) {
+    console.log(e)
+  }
+}
 
 export default mooseSightingSaga;

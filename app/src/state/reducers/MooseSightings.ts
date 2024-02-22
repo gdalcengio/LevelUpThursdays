@@ -9,6 +9,7 @@ import {
   USER_SAVE_SIGHTINGS_SUCCESS,
   USER_SAVE_SIGHTINGS_FAIL,
   USER_CLOSE_SNACKBAR,
+  SIGHTING_SYNC_SUCCESSFUL,
 } from "../actions";
 import { ACTIVITY_UPDATE_MOOSE } from "../actions/index";
 
@@ -60,6 +61,7 @@ function createMooseSightingStateReducer(
       }
       case USER_SAVE_SIGHTINGS_SUCCESS: {
         //const sightings  = state.allSightings? state.allSightings : [];
+        console.log(state)
         return {
           ...state,
           mooseArray: [],
@@ -141,6 +143,12 @@ function createMooseSightingStateReducer(
           ...state,
           mooseArray: [],
         };
+      }
+      case SIGHTING_SYNC_SUCCESSFUL: {
+        return {
+          ...state,
+          allSightings: state.allSightings.map((sighting) => { return {...sighting, 'status':"Synced"} })
+        }
       }
       default:
         return state;
