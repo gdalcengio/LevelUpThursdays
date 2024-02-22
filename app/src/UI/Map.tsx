@@ -81,13 +81,13 @@ const MapMarkers = (props: any) => {
     (state: any) => state.MooseSightingsState.allSightings
   );
 
-  const mooseIcon = new Icon({
-    iconUrl: 'moose.png',
-    iconSize: [30, 41],
-    iconAnchor: [12, 41],
-    popupAnchor: [1, -34],
-    shadowSize: [41, 41]
-  })
+  // const mooseIcon = new Icon({
+  //   iconUrl: 'moose.png',
+  //   iconSize: [30, 41],
+  //   iconAnchor: [12, 41],
+  //   popupAnchor: [1, -34],
+  //   shadowSize: [41, 41]
+  // })
 
   const markerState = useSelector((state: any) => state.MooseSightingsState.location) as LocationState;
   const defaultLocation: [number, number] = [48.4284, -123.3656];
@@ -141,7 +141,9 @@ const MapMarkers = (props: any) => {
       {mooseArray.map((moose: any, index: number) => {
         const position = getOffsetLocation(index, markerPosition);
         const mooseIcon = getMooseIcon(moose, 0);
-        return <Marker key={index} position={position} icon={mooseIcon} />;
+        return (
+          <Marker key={index} position={position} icon={mooseIcon} />
+        );
       })}
     </>
   );
@@ -162,7 +164,14 @@ const MapMarkers = (props: any) => {
         return sighting.mooseArray.map((moose: any, mooseIndex: number) => {
           const position = getOffsetLocation(index, markerPosition);
           const mooseIcon = getMooseIcon(moose, 1);
-          return <Marker key={index + mooseIndex} position={position} icon={mooseIcon} />;
+          const mooseDate = sighting.dateOfSighting;
+          return (
+            <Marker key={index + mooseIndex} position={position} icon={mooseIcon} >
+              <Popup>
+                <div>Date of Sighting: {mooseDate}</div>
+              </Popup>
+            </Marker>
+          )
         })
       })}
     </>
