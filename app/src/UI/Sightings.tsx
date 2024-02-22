@@ -16,8 +16,6 @@ export const Sightings = (props: any) => {
 
   const storedSightings = useSelector((state: any) => state.MooseSightingsState.allSightings);
 
-  console.log(JSON.stringify({ sightings: storedSightings }))
-
   return (
     <div className="sightings-container">
       <h1>All Sightings</h1>

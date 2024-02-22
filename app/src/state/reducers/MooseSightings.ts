@@ -48,7 +48,7 @@ function createMooseSightingStateReducer(
             {
               id: state.mooseArray.length + 1,
               age: Age.adult,
-              gender: null,
+              gender: 'unknown',
             },
           ],
         };
