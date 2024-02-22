@@ -18,4 +18,4 @@ USER node
 EXPOSE 7080
 
 # Run the application.
-CMD npm run start
+CMD ["npm", "run", "start"]
