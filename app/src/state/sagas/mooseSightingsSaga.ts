@@ -63,13 +63,13 @@ function* getGeoLocation(action: any) {
 
 
 function* write_sightings_to_disk(action: any): Generator<any> {
-    const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
-    localStorage.setItem("Sightings", JSON.stringify(sightings));
+  const sightings: any = yield select((state: any) => state.MooseSightingsState.allSightings);
+  localStorage.setItem("Sightings", JSON.stringify(sightings));
 }
 
 
 function* handle_USER_SAVE_SIGHTINGS(action: any) {
-  
+
   const mooseSightings: any = yield select((state: any) => state.MooseSightingsState);
 
   const mooseArray = mooseSightings.mooseArray;
@@ -85,7 +85,7 @@ function* handle_USER_SAVE_SIGHTINGS(action: any) {
   }
 
   if (errors.length) {
-    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: {errors: errors} });
+    yield put({ type: USER_SAVE_SIGHTINGS_FAIL, payload: { errors: errors } });
   }
   else {
     yield put({ type: USER_SAVE_SIGHTINGS_SUCCESS });
@@ -125,12 +125,12 @@ function fetchSightings(validatedSightings: any) {
     },
     body: JSON.stringify({ sightings: validatedSightings }),
   })
-  .then(response => {
-    if (!response.ok) {
-      return response.json().then(errorResponse => Promise.reject(new Error(errorResponse)));
-    }
-    return response.json();
-  });
+    .then(response => {
+      if (!response.ok) {
+        return response.json().then(errorResponse => Promise.reject(new Error(errorResponse)));
+      }
+      return response.json();
+    });
 }
 
 function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
@@ -140,11 +140,15 @@ function* handle_SYNC_SIGHTINGS_TO_DB(action: any) {
 
     const data = yield call(fetchSightings, validatedSightings);
 
-    yield put({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data }});
+    yield put({ type: SIGHTING_SYNC_SUCCESSFUL, payload: { data: data } });
     console.log('Sightings synced successfully:', data);
   } catch (error) {
     console.log(error);
   }
+}
+
+function* handle_USER_SAVE_SIGHTINGS_SUCCESS(action: any) {
+  yield put({ type: WRITE_SIGHTINGS_TO_DISK });
 }
 
 function* mooseSightingSaga() {
@@ -155,7 +159,8 @@ function* mooseSightingSaga() {
       takeEvery(WRITE_SIGHTINGS_TO_DISK, write_sightings_to_disk),
       takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS),
       takeEvery(SYNC_SIGHTINGS_TO_DB, handle_SYNC_SIGHTINGS_TO_DB),
-      takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk)
+      takeEvery(SIGHTING_SYNC_SUCCESSFUL, write_sightings_to_disk),
+      takeEvery(USER_SAVE_SIGHTINGS_SUCCESS, handle_USER_SAVE_SIGHTINGS_SUCCESS)
     ]);
 
   }
@@ -163,7 +168,5 @@ function* mooseSightingSaga() {
     console.log(e)
   }
 }
-
-
 
 export default mooseSightingSaga;
