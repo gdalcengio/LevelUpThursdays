@@ -1,4 +1,4 @@
-import sqlite3 from  "sqlite3";
+import sqlite3 from "sqlite3";
 
 //import { open, Database } from "sqlite";
 
@@ -44,16 +44,28 @@ export async function insertSightingMoose(dbConnection: any, postbody: any) {
   try {
     let values = [];
     postbody.sightings.forEach(sighting => {
-      sighting.mooseArray.forEach(moose => {
-        values.push([1, sighting.id, new Date(sighting.dateOfSighting * 1000), sighting.location[0], sighting.location[1], moose?.age || null, moose?.gender || null, 'Healthy']);
-      });
+      console.log(sighting)
+      if (sighting.status === 'Synced') {
+        // do not sync to db
+      }
+      else {
+        sighting.mooseArray.forEach(moose => {
+          values.push([1, sighting.id, new Date(sighting.dateOfSighting * 1000), sighting.location[0], sighting.location[1], moose?.age || null, moose?.gender || null, 'Healthy']);
+        });
+      }
     });
 
-    const placeholders = values.map(tuple => '(' + tuple.map(() => '?').join(', ') + ')').join(', ');
-    const insertSQL = `INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES ${placeholders}`;
+    if (values.length < 1) {
+      console.log("There is nothing new to sync")
+    }
 
-    await dbConnection.run(insertSQL, [].concat(...values));
-    console.log("Insertion successful");
+    else {
+      const placeholders = values.map(tuple => '(' + tuple.map(() => '?').join(', ') + ')').join(', ');
+      const insertSQL = `INSERT INTO Moose (clientId, sightingId, date, lat, long, lifestage, gender, health) VALUES ${placeholders}`;
+
+      await dbConnection.run(insertSQL, [].concat(...values));
+      console.log("Insertion successful");
+    }
   } catch (error) {
     console.error("Error during database insertion: ", error);
     throw error;

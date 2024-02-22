@@ -90,7 +90,7 @@ function prepareSightingsForApi(sightings: any) {
     return {
       id: sighting.id,
       dateOfSighting: sighting.dateOfSighting,
-      status: "Synced",
+      status: sighting.status,
       syncDate: Date.now(),
       location: [sighting.location.latitude, sighting.location.longitude],
       mooseArray: sighting.mooseArray.map((moose) => ({
