@@ -2,19 +2,22 @@
   "name": "api",
   "version": "1.0.0",
   "description": "",
-  "main": "index.ts",
+  "main": "index",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "ts-node --project ./tsconfig.json src/index.ts"
+    "start": "ts-node --swc src/index"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@swc/core": "^1.4.2",
+    "@types/body-parser": "^1.19.5",
+    "@types/express": "^4.17.21",
     "@types/sqlite3": "^3.1.11",
     "cors": "^2.8.5",
     "express": "~4.17.3",
     "express-openapi": "~7.0.1",
     "sqlite3": "^5.1.7",
-    "ts-node": "^10.9.1"
+    "ts-node": "^10.9.2"
   }
 }

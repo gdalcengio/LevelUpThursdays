@@ -1,0 +1,13 @@
+services:
+  ui:
+    build:
+      context: app
+      dockerfile: ./Dockerfile
+    ports: 
+      - "4173:4173"
+  api:
+    build:
+      context: api
+      dockerfile: ./Dockerfile
+    ports: 
+      - "7080:7080"

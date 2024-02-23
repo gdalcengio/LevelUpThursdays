@@ -4,22 +4,23 @@ import apiDoc from "../api-doc";
 import * as bodyParser from "body-parser";
 import { createDb, openDb } from "./Db/db";
 
-
 const port = 7080;
 
 const setupDb = async function () {
-  console.log("setting up db")
-  const connection = await openDb()
-  createDb(connection)
-}
+  console.log("setting up db");
+  const connection = await openDb();
+  createDb(connection);
+};
 
-const cors = require('cors');
+const cors = require("cors");
 
 const app: express.Express = express();
 
-app.use(cors({
-  origin: 'http://localhost:5173'
-}));
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+  })
+);
 
 app.use(bodyParser.json());
 
@@ -33,9 +34,9 @@ initialize({
   routesIndexFileRegExp: /(?:index)?\.[tj]s$/, // updated default to allow .ts
 });
 
-app.use((err, req, res, next) => {
-  console.log(`Error in path ${req.path}:`, err);
-  res.status(err.status).send(err.errors);
+app.use((err: any, req: any, res: any) => {
+  console.error(`Error in path ${req.path}:`, err);
+  res.status(500).send("Something broke!");
 });
 
 console.log("initialized");
@@ -44,6 +45,5 @@ if (port) {
     console.log("about to listen");
     app.listen(port);
     console.log("listening");
-  })
-  
+  });
 }

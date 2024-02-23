@@ -1,15 +1,13 @@
-// {
-//   "compilerOptions": {
-//     "esModuleInterop": true,
-//     "target": "es5",
-//     "module": "commonjs"
-//   },
-// }
 {
   "compilerOptions": {
     "module": "commonjs",
-    "lib": ["es2020.string", "dom", "es2015"],
-    "rootDir": ".",
+    "lib": [
+      "es2020.string",
+      "dom",
+      "es2015",
+      "es2018.asynciterable"
+    ],
+    "rootDir": "../",
     "baseUrl": "src",
     "outDir": "dist",
     "downlevelIteration": true,
