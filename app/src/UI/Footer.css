@@ -4,8 +4,9 @@
     flex-grow: 1;
     height: 75px;
     margin: 0;
-    align-items: center;
-    justify-content: start;
+    align-items: flex-start;
+    flex-direction: column;
+    flex-wrap: nowrap;
 
     a{
         color: #036;
@@ -15,3 +16,15 @@
 
 }
 
+.footer-content{
+  padding: 32px
+}
+
+.footer-text-container{
+  padding-top: 16px;
+}
+
+.privacy-text{
+    color: #036;
+    text-decoration: none;
+}
