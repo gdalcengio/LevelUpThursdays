@@ -7,6 +7,13 @@
     align-items: flex-start;
     flex-direction: column;
     flex-wrap: nowrap;
+
+    a{
+        color: #036;
+        text-decoration: none;
+        margin-left: 32px;
+    }
+
 }
 
 .footer-content{
