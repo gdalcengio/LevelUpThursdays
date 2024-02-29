@@ -8,6 +8,10 @@ export const Header = (props: any) => {
     navigate('/About');
   }
 
+  const goToRegs = () => {
+    navigate('/Regulations');
+  }
+
   const goToForm = () => {
     navigate('/');
   }
@@ -29,11 +33,14 @@ export const Header = (props: any) => {
               <button className="headerButton" onClick={goToForm}>
                 Add a Moose Sighting
               </button>
-              <button className="headerButton" onClick={goToSightings}>
-                Sightings
+              <button className="headerButton" onClick={goToRegs}>
+                Regulations
               </button>
               <button className="headerButton" onClick={goHome}>
                 About
+              </button>
+              <button className="headerButton" onClick={goToSightings}>
+                Sightings
               </button>
             </div>
         </div>

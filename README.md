@@ -60,17 +60,19 @@ Please follow these instructions on setting up in an IOS/Android simulation.
 
 4. `cd MooseTrackerV2/app`
 
-5. `npx cap sync`
+5 `npm run build`
 
-6. `npx cap open ios`
+6 `npx cap sync`
 
-7. In xcode hit play icon
+7. `npx cap open ios`
 
-8. Say yes to install suggested tools
+8. In xcode hit play icon
 
-9. Select generic ios device and choose some physical device
+9. Say yes to install suggested tools
 
-10. Hit play button and simulator should start
+10. Select generic ios device and choose some physical device
+
+11. Hit play button and simulator should start
 
 Tested on xcode 15.0.1
 
