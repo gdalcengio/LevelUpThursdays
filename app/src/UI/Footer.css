@@ -6,10 +6,12 @@
     margin: 0;
     align-items: center;
     justify-content: start;
+
+    a{
+        color: #036;
+        text-decoration: none;
+        margin-left: 32px;
+    }
+
 }
 
-a{
-    color: #036;
-    text-decoration: none;
-    margin-left: 32px;
-}
