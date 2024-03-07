@@ -34,6 +34,11 @@ export const Header = (props: any) => {
                 Sightings
               </NavLink>
               <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
+                Regulations
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
                 About
               </NavLink>
             </div>
