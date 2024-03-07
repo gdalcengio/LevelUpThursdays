@@ -7,7 +7,7 @@ export const Header = (props: any) => {
   const goHome = () => {
     navigate('/About');
   }
-
+  
   const goToRegs = () => {
     navigate('/Regulations');
   }
@@ -27,23 +27,25 @@ export const Header = (props: any) => {
                 <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
             </div>
             <div className="titleContainer" onClick={goToForm}>
-                <p className="headerText">Moose Tracker</p>
+              <p className="headerText">Moose Tracker</p>
             </div>
             <div className="headerButtonContainer">
               <button className="headerButton" onClick={goToForm}>
                 Add a Moose Sighting
-              </button>
-              <button className="headerButton" onClick={goToRegs}>
-                Regulations
-              </button>
-              <button className="headerButton" onClick={goHome}>
-                About
-              </button>
-              <button className="headerButton" onClick={goToSightings}>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
                 Sightings
-              </button>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/Regulations" ? 'header-selected ' : ''}`} to="/Regulations">
+                Regulations
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
+                About
+              </NavLink>
             </div>
-        </div>
+          </div>
         <span className="horizontal-line"></span>
       </header>
     )
