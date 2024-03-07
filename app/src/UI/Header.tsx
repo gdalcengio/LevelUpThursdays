@@ -24,20 +24,20 @@ export const Header = (props: any) => {
                 <img className="bcgovIcon" src="BC_logo.png" alt="Government of British Columbia" onClick={goToForm}/>
             </div>
             <div className="titleContainer" onClick={goToForm}>
-                <p className="headerText">Moose Tracker</p>
+              <p className="headerText">Moose Tracker</p>
             </div>
             <div className="headerButtonContainer">
               <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
                 Add a Moose Sighting
-              </button>
-              <button className="headerButton" onClick={goToSightings}>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
                 Sightings
-              </button>
-              <button className="headerButton" onClick={goHome}>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
                 About
-              </button>
+              </NavLink>
             </div>
-        </div>
+          </div>
         <span className="horizontal-line"></span>
       </header>
     )
