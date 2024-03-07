@@ -5,6 +5,14 @@ export const Header = (props: any) => {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const goHome = () => {
+    navigate('/About');
+  }
+
+  const goToRegs = () => {
+    navigate('/Regulations');
+  }
+
   const goToForm = () => {
     navigate('/');
   }
@@ -26,8 +34,17 @@ export const Header = (props: any) => {
                 Sightings
               </NavLink>
               <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
+              </button>
+              <button className="headerButton" onClick={goToRegs}>
+                Regulations
+              </button>
+              <button className="headerButton" onClick={goHome}>
                 About
               </NavLink>
+              </button>
+              <button className="headerButton" onClick={goToSightings}>
+                Sightings
+              </button>
             </div>
         </div>
         <span className="horizontal-line"></span>
