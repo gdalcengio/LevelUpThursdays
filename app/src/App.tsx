@@ -10,7 +10,6 @@ import { Route, Routes, BrowserRouter } from "react-router-dom";
 import { About } from "./UI/About";
 import { Sightings } from "./UI/Sightings";
 import { UserSaveSnackbar } from "./UI/UserSaveSnackbar";
-import { Breadcrumb } from "./UI/Breadcrumb";
 
 function App() {
   const ref = useRef(0);
@@ -21,7 +20,6 @@ function App() {
     <div className="rootContainer">
       <BrowserRouter>
       <Header  />
-      <Breadcrumb/>
       <UserSaveSnackbar/>
         <Routes>
           <Route
