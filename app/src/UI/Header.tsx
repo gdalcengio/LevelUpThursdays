@@ -1,19 +1,12 @@
 import "./Header.css"
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useLocation, NavLink } from "react-router-dom";
 
 export const Header = (props: any) => {
   const navigate = useNavigate();
-
-  const goHome = () => {
-    navigate('/About');
-  }
+  const location = useLocation();
 
   const goToForm = () => {
     navigate('/');
-  }
-
-  const goToSightings = () => {
-    navigate("/Sightings");
   }
 
     return(
@@ -26,15 +19,15 @@ export const Header = (props: any) => {
                 <p className="headerText">Moose Tracker</p>
             </div>
             <div className="headerButtonContainer">
-              <button className="headerButton" onClick={goToForm}>
+              <NavLink className={`headerButton ${location.pathname === "/" ? 'header-selected ' : ''}`} to="/">
                 Add a Moose Sighting
-              </button>
-              <button className="headerButton" onClick={goToSightings}>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/Sightings" ? 'header-selected ' : ''}`} to="/Sightings">
                 Sightings
-              </button>
-              <button className="headerButton" onClick={goHome}>
+              </NavLink>
+              <NavLink className={`headerButton ${location.pathname === "/About" ? 'header-selected ' : ''}`} to="/About">
                 About
-              </button>
+              </NavLink>
             </div>
         </div>
         <span className="horizontal-line"></span>
