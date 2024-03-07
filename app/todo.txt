@@ -6,10 +6,10 @@ Feb.22/24
 - [x] Add "make a sighting" button or something like that for new sightings page -Luna
 - [x] Add an indicator to show which route we're on - luna
 - [ ] Add a tutorial icon/help box - Luna
-- [ ] add a button for regulations pdf page - Gabe
-- [ ] Include pdf as an asset so it doesn't have to do a webfetch for it - Gabe
-  - [ ] Find the hunting regulations for this year and proof out viewing that pdf in android and ios for version 1
-  - [ ] For version 2 include a table of contents and physically split the pdf by regulations
+- [x] add a button for regulations pdf page - Gabe
+- [x] Include pdf as an asset so it doesn't have to do a webfetch for it - Gabe
+  - [x] Find the hunting regulations for this year and proof out viewing that pdf in android and ios for version 1
+  - [x] For version 2 include a table of contents and physically split the pdf by regulations
 - [ ] Fix the react problems within console
 - [ ] Sightings page could use some more styling
 - [ ] get docker working

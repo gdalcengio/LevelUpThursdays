@@ -1,7 +1,28 @@
-.PDFPanel {
+.regs-component {
+  background:#223f75;
+  padding: 2rem;
+}
+
+.table-of-contents {
   display: flex;
-  width: 100px;
-  height: 100px;
-  background-color: green;
-  justify-content: center;
+  flex-direction: column;
+  padding: 1rem;
+  background: white;
+  border-radius: 2px;
+}
+
+.title {
+  font-weight: bold;
+  text-decoration: none;
+}
+
+.link {
+  text-decoration: none;
+  padding: .5rem;
+}
+
+.link:hover {
+  background: #003366;
+  border-radius: 2px;
+  color: white;
 }
